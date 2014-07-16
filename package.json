@@ -1,0 +1,42 @@
+{
+  "name": "opentsdb-query",
+  "version": "0.0.0",
+  "description": "Library to query data from OpenTSDB.",
+  "author": {
+    "name": "Athan Reines",
+    "email": "athan@nodeprime.com"
+  },
+  "contributors": [
+    {}
+  ],
+  "scripts": {
+    "test": "mocha",
+    "test-cov": "istanbul cover --dir ./reports/coverage _mocha "
+  },
+  "main": "./lib",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kgryte/opentsdb-query.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kgryte/opentsdb-query/issues"
+  },
+  "keywords": [
+    "tsdb",
+    "timeseries",
+    "query"
+  ],
+  "dependencies": {
+    "request": "^2.37.0"
+  },
+  "devDependencies": {
+    "chai": "*",
+    "mocha": "*"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://www.opensource.org/licenses/MIT"
+    }
+  ]
+}
