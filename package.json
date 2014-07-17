@@ -1,7 +1,7 @@
 {
-  "name": "opentsdb",
+  "name": "opentsdb.io",
   "version": "0.0.0",
-  "description": "Library to interface with OpenTSDB.",
+  "description": "Client library to interface with OpenTSDB.",
   "author": {
     "name": "Athan Reines",
     "email": "athan@nodeprime.com"
@@ -16,10 +16,10 @@
   "main": "./lib",
   "repository": {
     "type": "git",
-    "url": "git://github.com/kgryte/node-opentsdb.git"
+    "url": "git://github.com/kgryte/opentsdb.io.git"
   },
   "bugs": {
-    "url": "https://github.com/kgryte/node-opentsdb/issues"
+    "url": "https://github.com/kgryte/opentsdb.io/issues"
   },
   "keywords": [
     "opentsdb",

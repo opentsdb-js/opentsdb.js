@@ -1,7 +1,14 @@
-Node OpenTSDB
-=============
+OpenTSDB
+========
 
-Node.js module for OpenTSDB.
+JavaScript client library to interface with OpenTSDB.
+
+
+### Install
+
+``` bash
+$ npm install opentsdb.io
+```
 
 
 ### Client
