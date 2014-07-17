@@ -31,6 +31,7 @@
   },
   "devDependencies": {
     "chai": "*",
+    "express": "^4.6.1",
     "mocha": "*"
   },
   "licenses": [
