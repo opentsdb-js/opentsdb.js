@@ -117,4 +117,166 @@ describe( 'OpenTSDB client', function tests() {
 		assert.strictEqual( client.port(), port );
 	});
 
+
+	// MILLISECOND RESOLUTION //
+
+	it( 'should provide a millisecond resolution method', function test() {
+		var client = createClient();
+		expect( client.ms ).to.be.a( 'function' );
+	});
+
+	it( 'should not allow a non-boolean millisecond resolution flag', function test() {
+		var client = createClient(),
+			values = [
+				'5',
+				[],
+				{},
+				5,
+				null,
+				undefined,
+				NaN,
+				function(){}
+			];
+
+		for ( var i = 0; i < values.length; i++ ) {
+			expect( badValue( values[i] ) ).to.throw( Error );
+		}
+
+		function badValue( value ) {
+			return function() {
+				client.ms( value );
+			};
+		}
+	});
+
+	it( 'should provide a method to set a millisecond resolution output flag', function test() {
+		var client = createClient(),
+			FLG = false;
+
+		client.ms( FLG );
+		assert.strictEqual( client.ms(), FLG );
+	});
+
+
+	// OUTPUT AS ARRAY //
+
+	it( 'should provide an array output method', function test() {
+		var client = createClient();
+		expect( client.arrays ).to.be.a( 'function' );
+	});
+
+	it( 'should not allow a non-boolean arrays flag', function test() {
+		var client = createClient(),
+			values = [
+				'5',
+				[],
+				{},
+				5,
+				null,
+				undefined,
+				NaN,
+				function(){}
+			];
+
+		for ( var i = 0; i < values.length; i++ ) {
+			expect( badValue( values[i] ) ).to.throw( Error );
+		}
+
+		function badValue( value ) {
+			return function() {
+				client.arrays( value );
+			};
+		}
+	});
+
+	it( 'should provide a method to set an arrays output flag', function test() {
+		var client = createClient(),
+			FLG = false;
+
+		client.arrays( FLG );
+		assert.strictEqual( client.arrays(), FLG );
+	});
+
+
+	// TSUIDS //
+
+	it( 'should provide a TSUIDs output method', function test() {
+		var client = createClient();
+		expect( client.tsuids ).to.be.a( 'function' );
+	});
+
+	it( 'should not allow a non-boolean TSUIDs flag', function test() {
+		var client = createClient(),
+			values = [
+				'5',
+				[],
+				{},
+				5,
+				null,
+				undefined,
+				NaN,
+				function(){}
+			];
+
+		for ( var i = 0; i < values.length; i++ ) {
+			expect( badValue( values[i] ) ).to.throw( Error );
+		}
+
+		function badValue( value ) {
+			return function() {
+				client.tsuids( value );
+			};
+		}
+	});
+
+	it( 'should provide a method to set a TSUIDs output flag', function test() {
+		var client = createClient(),
+			FLG = false;
+
+		client.tsuids( FLG );
+		assert.strictEqual( client.tsuids(), FLG );
+	});
+
+
+	// START //
+
+	it( 'should provide a query start time method', function test() {
+		var client = createClient();
+		expect( client.start ).to.be.a( 'function' );
+	});
+
+	it( 'should not allow invalid start times' );
+
+	it( 'should provide a method to set the query start time' );
+
+
+	// END //
+
+	it( 'should provide a method to specify a query end time', function test() {
+		var client = createClient();
+		expect( client.end ).to.be.a( 'function' );
+	});
+
+	it( 'should not allow invalid end times' );
+
+	it( 'should provide a method to set the query end time' );
+
+
+	// QUERIES //
+
+	it( 'should provide a queries method', function test() {
+		var client = createClient();
+		expect( client.queries ).to.be.a( 'function' );
+	});
+
+	it( 'should only allow metric or tsuid query instances to be set as queries' );
+
+
+	// GET //
+
+	it( 'should provide a method to submit a query request to TSDB', function test() {
+		var client = createClient();
+		expect( client.get ).to.be.a( 'function' );
+	});
+
 });
