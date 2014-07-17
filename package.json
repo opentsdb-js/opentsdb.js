@@ -1,7 +1,7 @@
 {
-  "name": "opentsdb-query",
+  "name": "opentsdb",
   "version": "0.0.0",
-  "description": "Library to query data from OpenTSDB.",
+  "description": "Library to interface with OpenTSDB.",
   "author": {
     "name": "Athan Reines",
     "email": "athan@nodeprime.com"
@@ -16,15 +16,17 @@
   "main": "./lib",
   "repository": {
     "type": "git",
-    "url": "git://github.com/kgryte/opentsdb-query.git"
+    "url": "git://github.com/kgryte/node-opentsdb.git"
   },
   "bugs": {
-    "url": "https://github.com/kgryte/opentsdb-query/issues"
+    "url": "https://github.com/kgryte/node-opentsdb/issues"
   },
   "keywords": [
+    "opentsdb",
     "tsdb",
     "timeseries",
-    "query"
+    "query",
+    "poll"
   ],
   "dependencies": {
     "request": "^2.37.0"

@@ -1,13 +1,30 @@
-Query TSDB
-==========
+Node OpenTSDB
+=============
+
+Node.js module for OpenTSDB.
+
+
+### Client
+
+(...)
+
+
+### Queries
+
+(...)
+
+
+### Polling
+
+(...)
+
 
 ### Notes
 
-
+(...)
 
 
 ### Tests
-
 
 To generate a test coverage report, install [Istanbul](https://github.com/gotwarlost/istanbul)
 
