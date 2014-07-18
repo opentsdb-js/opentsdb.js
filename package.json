@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "test": "mocha",
-    "test-cov": "istanbul cover --dir ./reports/coverage _mocha "
+    "test-cov": "istanbul cover _mocha --dir ./reports/coverage -- -R spec "
   },
   "main": "./lib",
   "repository": {
