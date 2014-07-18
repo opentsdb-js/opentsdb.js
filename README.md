@@ -4,40 +4,40 @@ OpenTSDB
 JavaScript client library to interface with OpenTSDB.
 
 
-===
+
 ### Install
 
 For use in Node.js,
 
 ``` bash
-$ npm install opentsdb.io
+$ npm install opentsdb
 ```
 
 For use in the browser, use browserify.
 
 
-===
+
 ### Client
 
-(...)
 
 
-===
+
+
 ### Queries
 
-(...)
 
 
-===
+
+
 ### Polling
 
-(...)
 
 
-===
-### Notes
 
-(...)
+---
+## Notes
+
+
 
 
 ---
@@ -59,13 +59,13 @@ $ make test
 
 All new feature development should have corresponding unit tests to validate correct functionality.
 
-To generate a test coverage report, ensure that you have installed [Istanbul](https://github.com/gotwarlost/istanbul)
+Assuming you have installed [Istanbul](https://github.com/gotwarlost/istanbul)
 
 ``` bash
 $ npm install -g istanbul
 ```
 
-To generate the report,
+execute the following command to generate a test coverage report:
 
 ``` bash
 $ make test-cov
