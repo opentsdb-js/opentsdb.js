@@ -5,7 +5,7 @@ var // Expectation library:
 	chai = require( 'chai' ),
 
 	// Module to be tested:
-	createQuery = require( './../lib/query' );
+	Query = require( './../lib/query' );
 
 
 // VARIABLES //
@@ -19,20 +19,20 @@ var expect = chai.expect,
 describe( 'OpenTSDB client query', function tests() {
 	'use strict';
 
-	it( 'should export a factory function', function test() {
-		expect( createQuery ).to.be.a( 'function' );
+	it( 'should export a constructor', function test() {
+		expect( Query ).to.be.a( 'function' );
 	});
 
 
 	// AGGREGATOR //
 
-	it( 'should provide an aggregator method', function test() {
-		var query = createQuery();
+	it( 'should provide a method to get/set the aggregator', function test() {
+		var query = new Query();
 		expect( query.aggregator ).to.be.a( 'function' );
 	});
 
 	it( 'should not allow a non-string aggregator', function test() {
-		var query = createQuery(),
+		var query = new Query(),
 			values = [
 				5,
 				[],
@@ -56,7 +56,7 @@ describe( 'OpenTSDB client query', function tests() {
 	});
 
 	it( 'should set the aggregator', function test() {
-		var query = createQuery();
+		var query = new Query();
 		query.aggregator( 'sum' );
 		assert.strictEqual( query.aggregator(), 'sum' );
 	});
@@ -64,13 +64,13 @@ describe( 'OpenTSDB client query', function tests() {
 
 	// DOWNSAMPLE //
 
-	it( 'should provide a downsample method', function test() {
-		var query = createQuery();
+	it( 'should provide a method to get/set the downsample function', function test() {
+		var query = new Query();
 		expect( query.downsample ).to.be.a( 'function' );
 	});
 
 	it( 'should not allow a non-string downsample', function test() {
-		var query = createQuery(),
+		var query = new Query(),
 			values = [
 				5,
 				[],
@@ -94,7 +94,7 @@ describe( 'OpenTSDB client query', function tests() {
 	});
 
 	it( 'should set the downsample function', function test() {
-		var query = createQuery();
+		var query = new Query();
 		query.downsample( '60m-avg' );
 		assert.strictEqual( query.downsample(), '60m-avg' );
 	});
@@ -102,13 +102,13 @@ describe( 'OpenTSDB client query', function tests() {
 
 	// RATE //
 
-	it( 'should provide a rate method', function test() {
-		var query = createQuery();
+	it( 'should provide a method to get/set the rate flag', function test() {
+		var query = new Query();
 		expect( query.rate ).to.be.a( 'function' );
 	});
 
 	it( 'should not allow a non-boolean rate', function test() {
-		var query = createQuery(),
+		var query = new Query(),
 			values = [
 				5,
 				[],
@@ -132,7 +132,7 @@ describe( 'OpenTSDB client query', function tests() {
 	});
 
 	it( 'should set the rate flag', function test() {
-		var query = createQuery();
+		var query = new Query();
 		query.rate( true );
 		assert.strictEqual( query.rate(), true );
 	});
@@ -140,13 +140,13 @@ describe( 'OpenTSDB client query', function tests() {
 
 	// RATE OPTIONS //
 
-	it( 'should provide a rate options method', function test() {
-		var query = createQuery();
+	it( 'should provide a method to get/set the rate options', function test() {
+		var query = new Query();
 		expect( query.rateOptions ).to.be.a( 'function' );
 	});
 
 	it( 'should not allow a non-object rate options argument', function test() {
-		var query = createQuery(),
+		var query = new Query(),
 			values = [
 				5,
 				[],
@@ -169,7 +169,7 @@ describe( 'OpenTSDB client query', function tests() {
 	});
 
 	it( 'should not allow a non-boolean rate options counter', function test() {
-		var query = createQuery(),
+		var query = new Query(),
 			values = [
 				5,
 				[],
@@ -196,13 +196,13 @@ describe( 'OpenTSDB client query', function tests() {
 	});
 
 	it( 'should set the rate options counter flag', function test() {
-		var query = createQuery();
+		var query = new Query();
 		query.rateOptions( {'counter': true} );
 		assert.strictEqual( query.rateOptions().counter, true );
 	});
 
 	it( 'should not allow a non-numeric rate options counter max', function test() {
-		var query = createQuery(),
+		var query = new Query(),
 			values = [
 				true,
 				[],
@@ -229,13 +229,13 @@ describe( 'OpenTSDB client query', function tests() {
 	});
 
 	it( 'should set the rate options counter max', function test() {
-		var query = createQuery();
+		var query = new Query();
 		query.rateOptions( {'counterMax': 5000} );
 		assert.strictEqual( query.rateOptions().counterMax, 5000 );
 	});
 
 	it( 'should not allow a non-numeric rate options reset value', function test() {
-		var query = createQuery(),
+		var query = new Query(),
 			values = [
 				true,
 				[],
@@ -262,7 +262,7 @@ describe( 'OpenTSDB client query', function tests() {
 	});
 
 	it( 'should set the rate options reset value', function test() {
-		var query = createQuery();
+		var query = new Query();
 		query.rateOptions( {'resetValue': 5000} );
 		assert.strictEqual( query.rateOptions().resetValue, 5000 );
 	});
@@ -270,13 +270,13 @@ describe( 'OpenTSDB client query', function tests() {
 
 	// TAGS //
 
-	it( 'should provide a tags method', function test() {
-		var query = createQuery();
+	it( 'should provide a method to get/set tag names and values', function test() {
+		var query = new Query();
 		expect( query.tags ).to.be.a( 'function' );
 	});
 
 	it( 'should not allow a non-string tag name', function test() {
-		var query = createQuery(),
+		var query = new Query(),
 			values = [
 				5,
 				[],
@@ -300,7 +300,7 @@ describe( 'OpenTSDB client query', function tests() {
 	});
 
 	it( 'should not allow a non-string tag value', function test() {
-		var query = createQuery(),
+		var query = new Query(),
 			values = [
 				5,
 				[],
@@ -324,7 +324,7 @@ describe( 'OpenTSDB client query', function tests() {
 	});
 
 	it( 'should set a tag value', function test() {
-		var query = createQuery(),
+		var query = new Query(),
 			tag = 'foo',
 			value = 'bar';
 		query.tags( tag, value );
@@ -332,7 +332,7 @@ describe( 'OpenTSDB client query', function tests() {
 	});
 
 	it( 'should return all tags', function test() {
-		var query = createQuery(),
+		var query = new Query(),
 			tags = {
 				'tag1': 'value1',
 				'tag2': 'value2'
@@ -344,7 +344,7 @@ describe( 'OpenTSDB client query', function tests() {
 	});
 
 	it( 'should return a tag value', function test() {
-		var query = createQuery(),
+		var query = new Query(),
 			tag = 'beep',
 			value = 'boop';
 		query.tags( tag, value );
@@ -354,18 +354,18 @@ describe( 'OpenTSDB client query', function tests() {
 
 	// DELETE TAG //
 
-	it( 'should provide a delete tag method', function test() {
-		var query = createQuery();
+	it( 'should provide a method to delete a tag', function test() {
+		var query = new Query();
 		expect( query.dtag ).to.be.a( 'function' );
 	});
 
 	it( 'should require a tag name as input', function test() {
-		var query = createQuery();
+		var query = new Query();
 		expect( query.dtag ).to.throw( Error );
 	});
 
 	it( 'should not allow a non-string tag name', function test() {
-		var query = createQuery(),
+		var query = new Query(),
 			values = [
 				5,
 				[],
@@ -389,7 +389,7 @@ describe( 'OpenTSDB client query', function tests() {
 	});
 
 	it( 'should delete a tag', function test() {
-		var query = createQuery(),
+		var query = new Query(),
 			tag = 'tag',
 			value = 'value';
 		query.tags( tag, value );

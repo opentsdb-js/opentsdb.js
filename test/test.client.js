@@ -29,7 +29,7 @@ describe( 'OpenTSDB client', function tests() {
 
 	// HOST //
 
-	it( 'should provide a host method', function test() {
+	it( 'should provide a method to get/set a host', function test() {
 		var client = createClient();
 		expect( client.host ).to.be.a( 'function' );
 	});
@@ -75,7 +75,7 @@ describe( 'OpenTSDB client', function tests() {
 
 	// PORT //
 
-	it( 'should provide a port method', function test() {
+	it( 'should provide a method to get/set the port', function test() {
 		var client = createClient();
 		expect( client.port ).to.be.a( 'function' );
 	});
@@ -121,7 +121,7 @@ describe( 'OpenTSDB client', function tests() {
 
 	// MILLISECOND RESOLUTION //
 
-	it( 'should provide a millisecond resolution method', function test() {
+	it( 'should provide a method to get/set the millisecond resolution flag', function test() {
 		var client = createClient();
 		expect( client.ms ).to.be.a( 'function' );
 	});
@@ -161,7 +161,7 @@ describe( 'OpenTSDB client', function tests() {
 
 	// OUTPUT AS ARRAY //
 
-	it( 'should provide an array output method', function test() {
+	it( 'should provide a method to get/set the array output flag', function test() {
 		var client = createClient();
 		expect( client.arrays ).to.be.a( 'function' );
 	});
@@ -201,7 +201,7 @@ describe( 'OpenTSDB client', function tests() {
 
 	// TSUIDS //
 
-	it( 'should provide a TSUIDs output method', function test() {
+	it( 'should provide a method to get/set TSUIDs output flag', function test() {
 		var client = createClient();
 		expect( client.tsuids ).to.be.a( 'function' );
 	});
@@ -241,7 +241,7 @@ describe( 'OpenTSDB client', function tests() {
 
 	// START //
 
-	it( 'should provide a query start time method', function test() {
+	it( 'should provide a method to get/set the query start time', function test() {
 		var client = createClient();
 		expect( client.start ).to.be.a( 'function' );
 	});
@@ -265,7 +265,7 @@ describe( 'OpenTSDB client', function tests() {
 
 	// QUERIES //
 
-	it( 'should provide a queries method', function test() {
+	it( 'should provide a method to get/set queries', function test() {
 		var client = createClient();
 		expect( client.queries ).to.be.a( 'function' );
 	});
