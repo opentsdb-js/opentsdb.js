@@ -43,6 +43,8 @@ For use in the browser, use browserify.
 ---
 ## Tests
 
+### Unit
+
 Unit tests use the [Mocha](http://visionmedia.github.io/mocha) test framework with [Chai](http://chaijs.com) assertions.
 
 Assuming you have installed Mocha,
@@ -59,7 +61,10 @@ $ make test
 
 All new feature development should have corresponding unit tests to validate correct functionality.
 
-Assuming you have installed [Istanbul](https://github.com/gotwarlost/istanbul)
+
+### Test Coverage
+
+Assuming you have installed [Istanbul](https://github.com/gotwarlost/istanbul),
 
 ``` bash
 $ npm install -g istanbul
@@ -71,7 +76,7 @@ execute the following command to generate a test coverage report:
 $ make test-cov
 ```
 
-Istanbul creates a `./reports/coverage` directory. To access an HTML version of the report
+Istanbul creates a `./reports/coverage` directory. To access an HTML version of the report,
 
 ``` bash
 $ open reports/coverage/lcov-report/index.html
