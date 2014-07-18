@@ -4,33 +4,43 @@ OpenTSDB
 JavaScript client library to interface with OpenTSDB.
 
 
+===
 ### Install
+
+For use in Node.js,
 
 ``` bash
 $ npm install opentsdb.io
 ```
 
+For use in the browser, use browserify.
 
+
+===
 ### Client
 
 (...)
 
 
+===
 ### Queries
 
 (...)
 
 
+===
 ### Polling
 
 (...)
 
 
+===
 ### Notes
 
 (...)
 
 
+===
 ### Tests
 
 To generate a test coverage report, install [Istanbul](https://github.com/gotwarlost/istanbul)

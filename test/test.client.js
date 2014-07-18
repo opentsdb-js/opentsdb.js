@@ -8,7 +8,7 @@ var // Expectation library:
 	tsdb = require( './utils/tsdb_server.js' ),
 
 	// Module to be tested:
-	createClient = require( './../lib/client.js' );
+	createClient = require( './../lib/client' );
 
 
 // VARIABLES //
@@ -20,6 +20,7 @@ var expect = chai.expect,
 // TESTS //
 
 describe( 'OpenTSDB client', function tests() {
+	'use strict';
 
 	it( 'should export a factory function', function test() {
 		expect( createClient ).to.be.a( 'function' );
@@ -277,6 +278,47 @@ describe( 'OpenTSDB client', function tests() {
 	it( 'should provide a method to submit a query request to TSDB', function test() {
 		var client = createClient();
 		expect( client.get ).to.be.a( 'function' );
+	});
+
+	it( 'should throw an error if provided argument is not a function', function test() {
+		var client = createClient(),
+			values = [
+				'5',
+				[],
+				{},
+				5,
+				null,
+				undefined,
+				NaN,
+				function(){}
+			];
+
+		for ( var i = 0; i < values.length; i++ ) {
+			expect( badValue( values[i] ) ).to.throw( Error );
+		}
+
+		function badValue( value ) {
+			return function() {
+				client.get( value );
+			};
+		}
+	});
+
+	it( 'should throw an error if a start time has not been provided when attempting to get data', function test() {
+		var client = createClient();
+		expect( run ).to.throw( Error );
+		function run() {
+			client.get( function(){} );
+		}
+	});
+
+	it( 'should throw an error if queries have not been provided when attempting to get data', function test() {
+		var client = createClient();
+		client.start( Date.now() );
+		expect( run ).to.throw( Error );
+		function run() {
+			client.get( function(){} );
+		}
 	});
 
 });
