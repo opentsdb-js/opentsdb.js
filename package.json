@@ -1,5 +1,5 @@
 {
-  "name": "opentsdb.io",
+  "name": "opentsdb",
   "version": "0.0.0",
   "description": "Client library to interface with OpenTSDB.",
   "author": {
@@ -16,10 +16,10 @@
   "main": "./lib",
   "repository": {
     "type": "git",
-    "url": "git://github.com/kgryte/opentsdb.io.git"
+    "url": "git://github.com/kgryte/opentsdb.js.git"
   },
   "bugs": {
-    "url": "https://github.com/kgryte/opentsdb.io/issues"
+    "url": "https://github.com/kgryte/opentsdb.js/issues"
   },
   "keywords": [
     "opentsdb",
