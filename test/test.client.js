@@ -545,7 +545,7 @@ describe( 'lib/client', function tests() {
 
 			assert.ok( new RegExp( ':'+metric ).test( url ), 'Does not contain metric name.' );
 
-			assert.ok( new RegExp( '{nid='+tags.nid+'}' ).test( url ), 'Does not contain tags.' + url );
+			assert.ok( new RegExp( '\\{nid='+( (tags.nid==='*') ? '\\*' : tags.nid )+'\\}' ).test( url ), 'Does not contain tags.' + url );
 		});
 
 	}); // end TESTS api/url

@@ -1,7 +1,7 @@
 OpenTSDB
 ========
 
-JavaScript client library to interface with OpenTSDB.
+JavaScript OpenTSDB client library.
 
 
 
