@@ -7,6 +7,10 @@ var // Expectation library:
 	// TSDB server:
 	tsdb = require( './utils/tsdb_server.js' ),
 
+	// Query types:
+	mQuery = require( './../lib/query/metric.js' ),
+	tQuery = require( './../lib/query/tsuids.js' ),
+
 	// Module to be tested:
 	createClient = require( './../lib/client' );
 
@@ -19,7 +23,7 @@ var expect = chai.expect,
 
 // TESTS //
 
-describe( 'OpenTSDB client', function tests() {
+describe( 'lib/client', function tests() {
 	'use strict';
 
 	it( 'should export a factory function', function test() {
@@ -246,9 +250,45 @@ describe( 'OpenTSDB client', function tests() {
 		expect( client.start ).to.be.a( 'function' );
 	});
 
-	it( 'should not allow invalid start times' );
+	it( 'should not allow invalid start times', function test() {
+		var client = createClient(),
+			values = [
+				'5',
+				[],
+				{},
+				5,
+				true,
+				null,
+				undefined,
+				NaN,
+				function(){}
+			];
 
-	it( 'should provide a method to set the query start time' );
+		for ( var i = 0; i < values.length; i++ ) {
+			expect( badValue( values[i] ) ).to.throw( Error );
+		}
+		function badValue( value ) {
+			return function() {
+				client.start( value );
+			};
+		}
+	});
+
+	it( 'should provide a method to set the query start time', function test() {
+		var client = createClient(),
+			relative = '72h-ago',
+			absolute = '2014/07/18 09:45',
+			timestamp = Date.now();
+
+		client.start( relative );
+		assert.strictEqual( client.start(), relative );
+
+		client.start( absolute );
+		assert.strictEqual( client.start(), absolute );
+
+		client.start( timestamp );
+		assert.strictEqual( client.start(), timestamp );
+	});
 
 
 	// END //
@@ -258,9 +298,45 @@ describe( 'OpenTSDB client', function tests() {
 		expect( client.end ).to.be.a( 'function' );
 	});
 
-	it( 'should not allow invalid end times' );
+	it( 'should not allow invalid end times', function test() {
+		var client = createClient(),
+			values = [
+				'5',
+				[],
+				{},
+				5,
+				true,
+				null,
+				undefined,
+				NaN,
+				function(){}
+			];
 
-	it( 'should provide a method to set the query end time' );
+		for ( var i = 0; i < values.length; i++ ) {
+			expect( badValue( values[i] ) ).to.throw( Error );
+		}
+		function badValue( value ) {
+			return function() {
+				client.end( value );
+			};
+		}
+	});
+
+	it( 'should provide a method to set the query end time', function test() {
+		var client = createClient(),
+			relative = '72h-ago',
+			absolute = '2014/07/18 09:45',
+			timestamp = Date.now();
+
+		client.end( relative );
+		assert.strictEqual( client.end(), relative );
+
+		client.end( absolute );
+		assert.strictEqual( client.end(), absolute );
+
+		client.end( timestamp );
+		assert.strictEqual( client.end(), timestamp );
+	});
 
 
 	// QUERIES //
@@ -270,7 +346,63 @@ describe( 'OpenTSDB client', function tests() {
 		expect( client.queries ).to.be.a( 'function' );
 	});
 
-	it( 'should only allow metric or tsuid query instances to be set as queries' );
+	it( 'should only allow metric or tsuid query instances to be set as queries', function test() {
+		var client = createClient(),
+			values = [
+				'5',
+				[],
+				{},
+				5,
+				true,
+				null,
+				undefined,
+				NaN,
+				function(){}
+			];
+
+		for ( var i = 0; i < values.length; i++ ) {
+			expect( badValue( values[i] ) ).to.throw( Error );
+		}
+		function badValue( value ) {
+			return function() {
+				client.queries( value );
+			};
+		}
+	});
+
+	it( 'should set metric or tsuid queries', function test() {
+		var client = createClient(),
+			query;
+
+		// Metric query:
+		query = mQuery();
+		client.queries( query );
+		assert.strictEqual( client.queries()[0], query );
+
+		// TSUID query:
+		query = tQuery();
+		client.queries( query );
+		assert.strictEqual( client.queries()[0], query );
+	});
+
+	it( 'should allow an arbitrary number of queries to be set', function test() {
+		var client = createClient(),
+			queries = [],
+			cQueries;
+
+		// Assemble an array of queries:
+		queries[ 0 ] = mQuery();
+		queries[ 1 ] = mQuery();
+		queries[ 2 ] = tQuery();
+		queries[ 3 ] = mQuery();
+		queries[ 4 ] = tQuery();
+
+		client.queries.apply( client, queries );
+		cQueries = client.queries();
+		for ( var i = 0; i < queries.length; i++ ) {
+			assert.strictEqual( cQueries[ i ], queries[ i ] );
+		}
+	});
 
 
 	// GET //

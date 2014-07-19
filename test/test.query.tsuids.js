@@ -19,7 +19,7 @@ var expect = chai.expect,
 
 // TESTS //
 
-describe( 'OpenTSDB client TSUIDs query', function tests() {
+describe( 'lib/query/tsuids', function tests() {
 	'use strict';
 
 	it( 'should export a factory function', function test() {

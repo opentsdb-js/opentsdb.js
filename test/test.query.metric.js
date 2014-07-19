@@ -19,7 +19,7 @@ var expect = chai.expect,
 
 // TESTS //
 
-describe( 'OpenTSDB client metric query', function tests() {
+describe( 'lib/query/metric', function tests() {
 	'use strict';
 
 	it( 'should export a factory function', function test() {

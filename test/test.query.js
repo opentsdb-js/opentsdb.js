@@ -16,7 +16,7 @@ var expect = chai.expect,
 
 // TESTS //
 
-describe( 'OpenTSDB client query', function tests() {
+describe( 'lib/query', function tests() {
 	'use strict';
 
 	it( 'should export a constructor', function test() {

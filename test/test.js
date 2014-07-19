@@ -31,7 +31,7 @@ function test_property( name ) {
 
 // TESTS //
 
-describe( 'OpenTSDB Library', function tests() {
+describe( '/lib', function tests() {
 	'use strict';
 
 	var properties = [
