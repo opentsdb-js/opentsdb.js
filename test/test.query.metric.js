@@ -32,6 +32,11 @@ describe( 'lib/query/metric', function tests() {
 		assert.ok( query instanceof Uber, 'query is not an instance of parent Query.' );
 	});
 
+	it( 'should have a type attribute', function test() {
+		var query = createQuery();
+		assert.strictEqual( query.type.toLowerCase(), 'metric' );
+	});
+
 	it( 'should be a method to set the metric name', function test() {
 		var query = createQuery();
 		expect( query.metric ).to.be.a( 'function' );

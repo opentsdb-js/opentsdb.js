@@ -31,6 +31,16 @@ describe( 'lib/query/tsuids', function tests() {
 		assert.ok( query instanceof Uber, 'query is not an instance of parent Query' );
 	});
 
+	it( 'should have a type attribute', function test() {
+		var query = createQuery();
+		assert.strictEqual( query.type.toLowerCase(), 'tsuids' );
+	});
+
+	it( 'should not support a tags method', function test() {
+		var query = createQuery();
+		expect( query.tags ).to.throw( Error );
+	});
+
 	it( 'should be provide a method to set TSUIDs', function test() {
 		var query = createQuery();
 		expect( query.tsuids ).to.be.a( 'function' );

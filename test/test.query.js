@@ -76,7 +76,6 @@ describe( 'lib/query', function tests() {
 				[],
 				{},
 				true,
-				null,
 				undefined,
 				NaN,
 				function(){}
@@ -95,8 +94,12 @@ describe( 'lib/query', function tests() {
 
 	it( 'should set the downsample function', function test() {
 		var query = new Query();
+
 		query.downsample( '60m-avg' );
 		assert.strictEqual( query.downsample(), '60m-avg' );
+
+		query.downsample( null );
+		assert.isNull( query.downsample() );
 	});
 
 
@@ -197,18 +200,21 @@ describe( 'lib/query', function tests() {
 
 	it( 'should set the rate options counter flag', function test() {
 		var query = new Query();
+
 		query.rateOptions( {'counter': true} );
 		assert.strictEqual( query.rateOptions().counter, true );
+
+		query.rateOptions( {'counter': false} );
+		assert.strictEqual( query.rateOptions().counter, false );
 	});
 
-	it( 'should not allow a non-numeric rate options counter max', function test() {
+	it( 'should not allow a non-numeric or non-null rate options counter max', function test() {
 		var query = new Query(),
 			values = [
 				true,
 				[],
 				{},
 				'5',
-				null,
 				NaN,
 				function(){}
 			],
@@ -230,8 +236,12 @@ describe( 'lib/query', function tests() {
 
 	it( 'should set the rate options counter max', function test() {
 		var query = new Query();
+
 		query.rateOptions( {'counterMax': 5000} );
 		assert.strictEqual( query.rateOptions().counterMax, 5000 );
+
+		query.rateOptions( {'counterMax': null} );
+		assert.strictEqual( query.rateOptions().counterMax, null );
 	});
 
 	it( 'should not allow a non-numeric rate options reset value', function test() {
@@ -263,8 +273,12 @@ describe( 'lib/query', function tests() {
 
 	it( 'should set the rate options reset value', function test() {
 		var query = new Query();
+
 		query.rateOptions( {'resetValue': 5000} );
 		assert.strictEqual( query.rateOptions().resetValue, 5000 );
+
+		query.rateOptions( {'resetValue': 0} );
+		assert.strictEqual( query.rateOptions().resetValue, 0 );
 	});
 
 
