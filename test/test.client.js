@@ -426,6 +426,54 @@ describe( 'lib/client', function tests() {
 
 	describe( 'api/url', function tests() {
 
+		var // Settings:
+			start = Date.now(),
+			end = start + 1000,
+			ms = false,
+			arrays = false,
+			tsuids = true,
+
+			// Query:
+			aggregator = 'sum',
+			downsample = '5m-avg',
+			rate = true,
+			counter = true,
+			counterMax = 10000,
+			resetValue = 5,
+			tags = {
+				'nid': '*'
+			},
+			metric = 'cpu.utilization';
+
+		function setMetricQuery( query ) {
+			query.metric( metric )
+				.aggregator( aggregator )
+				.downsample( downsample )
+				.rate( rate )
+				.rateOptions( {
+					'counter': counter,
+					'counterMax': counterMax,
+					'resetValue': resetValue
+				})
+				.tags( 'nid', tags.nid );
+		} // end FUNCTION setMetricQuery()
+
+		function setClient() {
+			var client = arguments[ 0 ],
+				queries = Array.prototype.slice.apply( arguments );
+
+			client.start( start )
+				.end( end )
+				.ms( ms )
+				.arrays( arrays )
+				.tsuids( tsuids );
+
+			queries.shift();
+				
+			client.queries.apply( client, queries );
+		} // end FUNCTION setClient()
+
+
 		it( 'should provide a method to get a request URL', function test() {
 			var client = createClient();
 			expect( client.url ).to.be.a( 'function' );
@@ -478,50 +526,13 @@ describe( 'lib/client', function tests() {
 		it( 'should return a request URL', function test() {
 			var client = createClient(),
 				query = mQuery(),
-
-				// Settings:
-				start = Date.now(),
-				end = start + 1000,
-				ms = false,
-				arrays = false,
-				tsuids = true,
-
-				// Query:
-				aggregator = 'sum',
-				downsample = '5m-avg',
-				rate = true,
-				counter = true,
-				counterMax = 10000,
-				resetValue = 5,
-				tags = {
-					'nid': '*'
-				},
-				metric = 'cpu.utilization',
-
-				// URL:
 				url;
 
-			query.metric( metric )
-				.aggregator( aggregator )
-				.downsample( downsample )
-				.rate( rate )
-				.rateOptions( {
-					'counter': counter,
-					'counterMax': counterMax,
-					'resetValue': resetValue
-				})
-				.tags( 'nid', tags.nid );
-
-			client.start( start )
-				.end( end )
-				.ms( ms )
-				.arrays( arrays )
-				.tsuids( tsuids )
-				.queries( query );
-			
+			setMetricQuery( query );
+			setClient( client, query );
 			url = client.url();
 
-			assert.ok( new RegExp( '/api/query?' ).test( url ), 'Does not contain api query route.' );
+			assert.ok( new RegExp( '\\/api\\/query\\?' ).test( url ), 'Does not contain api query route.' );
 
 			assert.ok( new RegExp( 'start='+start ).test( url ), 'Does not contain start time.' );
 
@@ -533,19 +544,114 @@ describe( 'lib/client', function tests() {
 
 			assert.ok( new RegExp( 'showTSUIDs='+tsuids ).test( url ), 'Does not contain tsuids output flag.' );
 
-			assert.ok( new RegExp( '&m=' ).test( url ), 'Does not specific a metric query.' );
+			assert.ok( new RegExp( '\\&m=' ).test( url ), 'Does not specific a metric query.' );
 
 			assert.ok( new RegExp( aggregator+':' ).test( url ), 'Does not contain aggregator.' );
 
 			assert.ok( new RegExp( 'rate' ).test( url ), 'Does not contain a rate flag.' );
 
-			assert.ok( new RegExp( '{'+counter+','+counterMax+','+resetValue+'}' ).test( url ), 'Does not contain the options.' );
+			assert.ok( new RegExp( '\\{'+counter+','+counterMax+','+resetValue+'\\}' ).test( url ), 'Does not contain the options.' );
 
 			assert.ok( new RegExp( ':'+downsample+':' ).test( url ), 'Does not contain downsample.' );
 
 			assert.ok( new RegExp( ':'+metric ).test( url ), 'Does not contain metric name.' );
 
 			assert.ok( new RegExp( '\\{nid='+( (tags.nid==='*') ? '\\*' : tags.nid )+'\\}' ).test( url ), 'Does not contain tags.' + url );
+		});
+
+		it( 'should not return a URL which includes a counterMax parameter in the URL if the value is set to null', function test() {
+			var client = createClient(),
+				query = mQuery(),
+				url;
+
+			setMetricQuery( query );
+			query.rateOptions({'counterMax': null});
+
+			setClient( client, query );
+			url = client.url();
+
+			assert.ok( new RegExp( '\\{'+counter+',,'+resetValue+'\\}' ).test( url ), 'Does not contain the correct options.' );
+		});
+
+		it( 'should not return a URL which includes a rate parameter in the URL if the value is set to false', function test() {
+			var client = createClient(),
+				query = mQuery(),
+				url;
+
+			setMetricQuery( query );
+			query.rate( false );
+
+			setClient( client, query );
+			url = client.url();
+
+			assert.notOk( new RegExp( 'rate\\{' ).test( url ), 'Rate parameter incorrectly set.' );
+		});
+
+		it( 'should not return a URL which includes a downsample parameter if the value is set to null', function test() {
+			var client = createClient(),
+				query = mQuery(),
+				url;
+
+			setMetricQuery( query );
+			query.downsample( null );
+
+			setClient( client, query );
+			url = client.url();
+
+			assert.notOk( new RegExp( ':'+downsample+':' ).test( url ), 'Downsample parameter incorrectly set.' );
+		});
+
+		it( 'should include multiple queries in a single URL', function test() {
+			var client = createClient(),
+				query1 = mQuery(),
+				query2 = mQuery(),
+				url;
+
+			setMetricQuery( query1 );
+			setMetricQuery( query2 );
+			query2.metric( 'mem.utilization' )
+				.rate( false );
+
+			setClient( client, query1, query2 );
+			url = client.url();
+
+			assert.ok( new RegExp( query1.metric() ).test( url ), 'Does not include first query metric.' );
+
+			assert.ok( new RegExp( 'mem.utilization' ).test( url ), 'Does not include second query metric.' );
+		});
+
+		it( 'should not return a URL which includes a tag parameter if none exist', function test() {
+			var client = createClient(),
+				query = mQuery(),
+				url;
+
+			setMetricQuery( query );
+			query.dtag( 'nid' );
+
+			setClient( client, query );
+			url = client.url();
+
+			assert.notOk( new RegExp( '\\{nid=' ).test( url ), 'Tags incorrectly set.' );
+		});
+
+		it( 'should properly format multiple tags', function test() {
+			var client = createClient(),
+				query = mQuery(),
+				tags, keys,
+				url;
+
+			setMetricQuery( query );
+			query.tags( 'foo', 'bar' );
+
+			setClient( client, query );
+			url = client.url();
+
+			tags = query.tags();
+			keys = Object.keys( tags );
+
+			assert.ok( new RegExp( keys[0] + '=' + tags[ keys[0] ] ).test( url ), 'Does not include tag:' + keys[0] );
+
+			assert.ok( new RegExp( keys[1] + '=' + tags[ keys[1] ] ).test( url ), 'Does not include tag:' + keys[1] );
 		});
 
 	}); // end TESTS api/url
