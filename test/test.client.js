@@ -543,7 +543,7 @@ describe( 'lib/client', function tests() {
 			});
 		});
 
-		it( 'should pass any data request errors along to the callback', function test( done ) {
+		it( 'should pass along any data request errors to the callback', function test( done ) {
 			var client = createClient(),
 				query = mQuery();
 
