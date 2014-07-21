@@ -524,7 +524,48 @@ describe( 'lib/client', function tests() {
 			}
 		});
 
-		it( 'should perform a GET request' );
+		it( 'should perform a GET request', function test( done ) {
+			var client = createClient(),
+				query = mQuery();
+
+			query.metric( 'cpu.utilization' );
+			client.start( Date.now() )
+				.queries( query );
+
+			client.get( function onData( error, data ) {
+				if ( error ) {
+					assert.notOk( true, 'Get request returned an error.' );
+					done();
+					return;
+				}
+				assert.ok( true );
+				done();
+			});
+		});
+
+		it( 'should pass any data request errors along to the callback', function test( done ) {
+			var client = createClient(),
+				query = mQuery();
+
+			// Override the client url method:
+			client.url = function() {
+				return 'bad_protocol://bad/url';
+			};
+
+			query.metric( 'cpu.utilization' );
+			client.start( Date.now() )
+				.queries( query );
+
+			client.get( function onData( error, data ) {
+				if ( error ) {
+					assert.ok( true );
+					done();
+					return;
+				}
+				assert.notOk( true );
+				done();
+			});
+		});
 
 	}); // end TESTS api/get
 

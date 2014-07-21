@@ -23,12 +23,16 @@
 	QUERY += '&';
 	QUERY += 'arrays=true';
 	QUERY += '&';
+	QUERY += 'showTSUIDs=false';
+	QUERY += '&';
 	QUERY += 'start=72000ms-ago';
 	QUERY += '&';
 	QUERY += 'end=60s-ago';
 	QUERY += '&';
 	QUERY += 'm=';
 	QUERY += 'avg';
+	QUERY += ':';
+	QUERY += '2s-avg';
 	QUERY += ':';
 	QUERY += 'mem.utilization';
 	QUERY += '{nid=1234}';
@@ -84,6 +88,34 @@
 
 		response.send( 200, JSON.stringify( data ) );
 	});
+
+	app.get( '/bad_body', function onRequest( request, response ) {
+		response.writeHead( 200 );
+		response.end();
+	});
+
+	app.get( '/bad_json', function onRequest( request, response ) {
+		response.send( 200, '{key: value"}' );
+	});
+
+	app.get( '/no_data', function onRequest( request, response ) {
+		response.send( 200, '[]' );
+	});
+
+	app.get( '/good_data', function onRequest( request, response ) {
+		var data = [
+			{
+				'metric': 'cpu.utilization',
+				'tags': {
+					'nid': '1234'
+				},
+				'aggregateTags': [],
+				'dps': []
+			}
+		];
+		response.send( 200, JSON.stringify( data ) );
+	});
+
 
 
 	// INIT //
