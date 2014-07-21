@@ -443,20 +443,33 @@ describe( 'lib/client', function tests() {
 			tags = {
 				'nid': '*'
 			},
-			metric = 'cpu.utilization';
+			metric = 'cpu.utilization',
+			ids = '0010120010,0010013100';
 
 		function setMetricQuery( query ) {
 			query.metric( metric )
 				.aggregator( aggregator )
 				.downsample( downsample )
 				.rate( rate )
-				.rateOptions( {
+				.rateOptions({
 					'counter': counter,
 					'counterMax': counterMax,
 					'resetValue': resetValue
 				})
 				.tags( 'nid', tags.nid );
 		} // end FUNCTION setMetricQuery()
+
+		function setTSUIDsQuery( query ) {
+			query.tsuids( ids )
+				.aggregator( aggregator )
+				.downsample( downsample )
+				.rate( rate )
+				.rateOptions({
+					'counter': counter,
+					'counterMax': counterMax,
+					'resetValue': resetValue
+				});
+		} // end FUNCTION setTSUIDsQuery()
 
 		function setClient() {
 			var client = arguments[ 0 ],
@@ -544,7 +557,7 @@ describe( 'lib/client', function tests() {
 
 			assert.ok( new RegExp( 'showTSUIDs='+tsuids ).test( url ), 'Does not contain tsuids output flag.' );
 
-			assert.ok( new RegExp( '\\&m=' ).test( url ), 'Does not specific a metric query.' );
+			assert.ok( new RegExp( '&m=' ).test( url ), 'Does not specific a metric query.' );
 
 			assert.ok( new RegExp( aggregator+':' ).test( url ), 'Does not contain aggregator.' );
 
@@ -652,6 +665,24 @@ describe( 'lib/client', function tests() {
 			assert.ok( new RegExp( keys[0] + '=' + tags[ keys[0] ] ).test( url ), 'Does not include tag:' + keys[0] );
 
 			assert.ok( new RegExp( keys[1] + '=' + tags[ keys[1] ] ).test( url ), 'Does not include tag:' + keys[1] );
+		});
+
+		it( 'should not include a metric name or tags when encoding a TSUID query', function test() {
+			var client = createClient(),
+				query = tQuery(),
+				url;
+
+			setTSUIDsQuery( query );
+			setClient( client, query );
+			url = client.url();
+
+			assert.notOk( new RegExp( '&m=' ).test( url ), 'Incorrectly includes a metric query.' );
+
+			assert.notOk( new RegExp( '\\{[A-Za-z0-9=,]+\\}$' ).test( url ), 'Incorrectly includes tags.' );
+
+			assert.ok( new RegExp( '&tsuids=' ).test( url ), 'Does not indicate a TSUID query.' );
+
+			assert.ok( new RegExp( ':' + ids ).test( url ), 'Does not contain TSUIDs.' );
 		});
 
 	}); // end TESTS api/url
