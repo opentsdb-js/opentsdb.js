@@ -12,7 +12,26 @@
 	// VARIABLES //
 
 	var PORT = 4242,
-		NIDS = new Array( 10 );
+		URL = '',
+		NIDS = new Array( 10 ),
+		QUERY = '';
+
+	URL += 'http://127.0.0.1:' + PORT;
+
+	QUERY += URL + '/api/query?';
+	QUERY += 'ms=true';
+	QUERY += '&';
+	QUERY += 'arrays=true';
+	QUERY += '&';
+	QUERY += 'start=72000ms-ago';
+	QUERY += '&';
+	QUERY += 'end=60s-ago';
+	QUERY += '&';
+	QUERY += 'm=';
+	QUERY += 'avg';
+	QUERY += ':';
+	QUERY += 'mem.utilization';
+	QUERY += '{nid=1234}';
 
 	for ( var i = 0; i < NIDS.length; i++ ) {
 		NIDS[ i ] = i;
@@ -70,6 +89,8 @@
 	// INIT //
 
 	app.listen( PORT );
+	app.url = URL;
+	app.query = QUERY;
 
 
 	// EXPORTS //

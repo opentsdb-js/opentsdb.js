@@ -467,8 +467,11 @@ describe( 'lib/client', function tests() {
 			client.queries( mQuery() );
 			queries = client.queries();
 
+			// Simulate people messing with the queries array, leaving it empty:
 			queries.shift();
 			expect( run ).to.throw( Error );
+
+			// NOTE: we do not get around people messing with the array by adding and removing bogus entries. *sigh*. We would have to check each query at runtime to do this. We'll act naive and believe that people will not be mischievous like that.
 
 			function run() {
 				client.url();
@@ -521,34 +524,7 @@ describe( 'lib/client', function tests() {
 			}
 		});
 
-		it( 'should throw an error if a start time has not been set before attempting to get data', function test() {
-			var client = createClient();
-			expect( run ).to.throw( Error );
-			function run() {
-				client.get( function(){} );
-			}
-		});
-
-		it( 'should throw an error if queries have not been set before attempting to get data', function test() {
-			var client = createClient(),
-				queries;
-
-			client.start( Date.now() );
-			expect( run ).to.throw( Error );
-
-			client.queries( mQuery() );
-			queries = client.queries();
-
-			// Simulate people messing with the queries array, leaving it empty:
-			queries.shift();
-			expect( run ).to.throw( Error );
-
-			// NOTE: we do not get around people messing with the array by adding and removing bogus entries. *sigh*. We would have to check each query at runtime to do this. We'll act naive and belief that people will not be mischievous like that.
-
-			function run() {
-				client.get( function(){} );
-			}
-		});
+		it( 'should perform a GET request' );
 
 	}); // end TESTS api/get
 
