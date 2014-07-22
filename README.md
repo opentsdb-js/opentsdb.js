@@ -19,8 +19,39 @@ For use in the browser, use browserify.
 
 ### Client
 
+To interface with OpenTSDB, one must first create a client.
+To do so,
+
+``` javascript
+var opentsdb = require( 'opentsdb' );
+
+var client = opentsdb.client();
+```
+
+OpenTSDB clients are configurable and have the following methods...
 
 
+#### client.host( [host] )
+
+By default, the client host is `127.0.0.1` and port `4242`. To point to a remote host,
+
+``` javascript
+client.host( '192.168.92.11' );
+```
+
+and, to change the port,
+
+``` javascript
+client.port( 8080 );
+```
+
+To turn on millisecond resolution,
+
+``` javascript
+client.ms( true );
+```
+
+To set 
 
 
 ### Queries
