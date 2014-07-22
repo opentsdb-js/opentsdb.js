@@ -112,7 +112,7 @@ var url = client.url();
 An example returned `url`:
 
 ```
-http://127.0.0.1:4242/api/query?ms=true&arrays=true&showTSUIDs=true&start=72000ms-ago&end=60s-ago&m=avg:5s-avg:cpu.utilization{nid=*}&m=avg:5s-avg:mem.utilization{nid=*}
+http://127.0.0.1:4242/api/query?ms=true&arrays=true&show_tsuids=true&start=72000ms-ago&end=60s-ago&m=avg:5s-avg:cpu.utilization{nid=*}&m=avg:5s-avg:mem.utilization{nid=*}
 ```
 
 #### client.get( clbk )
