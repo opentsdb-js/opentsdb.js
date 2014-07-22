@@ -23,7 +23,7 @@
 	QUERY += '&';
 	QUERY += 'arrays=true';
 	QUERY += '&';
-	QUERY += 'showTSUIDs=false';
+	QUERY += 'show_tsuids=false';
 	QUERY += '&';
 	QUERY += 'start=72000ms-ago';
 	QUERY += '&';

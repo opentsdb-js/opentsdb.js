@@ -139,7 +139,7 @@ describe( 'lib/utils/url', function tests() {
 
 			assert.ok( new RegExp( 'arrays='+arrays ).test( url ), 'Does not contain array output flag.' );
 
-			assert.ok( new RegExp( 'showTSUIDs='+tsuids ).test( url ), 'Does not contain tsuids output flag.' );
+			assert.ok( new RegExp( 'show_tsuids='+tsuids ).test( url ), 'Does not contain tsuids output flag.' );
 
 			assert.ok( new RegExp( '&m=' ).test( url ), 'Does not specific a metric query.' );
 
