@@ -73,7 +73,7 @@ client.tsuids( true );
 
 #### client.start( [time] )
 
-This method is a setter/getter. If no `time` is provided, the method returns the configured query start time. Before making an OpenTSDB query, a start time is _required_. To do so,
+This method is a setter/getter. If no `time` is provided, the method returns the configured query start time. Before making an OpenTSDB query, a start time is __required__. To do so,
 
 ``` javascript
 client.start( Date.now()-1000 );
