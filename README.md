@@ -149,7 +149,7 @@ The distinctions between the two types are 1) metric queries require a metric na
 
 #### query.aggregator( [aggregator] )
 
-This method is a setter and getter. If no `aggregator` is provided, returns the query [aggregator](http://opentsdb.net/docs/build/html/api_http/aggregators.html) . The default aggregator is `avg`. To set a different aggregator,
+This method is a setter and getter. If no `aggregator` is provided, returns the query [aggregator](http://opentsdb.net/docs/build/html/api_http/aggregators.html) . The default aggregator is `avg`. To set a different `aggregator`,
 
 ``` javascript
 query.aggregator( 'min' );
@@ -157,7 +157,7 @@ query.aggregator( 'min' );
 
 #### query.downsample( [downsample] )
 
-This method is a setter and getter. If no `downsample` function is provided, returns the configured downsample function. By default, downsampling is turned off. To specify a downsample function,
+This method is a setter and getter. If no `downsample` function is provided, returns the configured downsample function. By default, downsampling is turned off. To specify a `downsample` function,
 
 ``` javascript
 query.downsample( '5s-avg' );
@@ -203,7 +203,7 @@ The `*` (wildcard) indicates all values for a `tag`.
 
 #### mQuery.dtag( tag )
 
-This method deletes a query tag.
+This method deletes a query `tag`.
 
 ``` javascript
 // Add a tag:
@@ -216,7 +216,7 @@ mQuery.dtag( 'nid' );
 
 #### mQuery.metric( [name] )
 
-This method is a setter and getter. If no `metric` is provided, returns the query metric. A metric name is __required__ to encode a `metric` query. To set a metric name,
+This method is a setter and getter. If no `metric name` is provided, returns the query metric. A `metric name` is __required__ to encode a metric query. To set a `metric name`,
 
 ``` javascript
 mQuery.metric( 'mem.utilization' );
@@ -225,7 +225,7 @@ mQuery.metric( 'mem.utilization' );
 
 #### tQuery.tsuids( [tsuids] )
 
-This method is a setter and getter. If no `tsuids` are provided, return the query tsuids. TSUIDs are __required__ to encode a `tsuid` query. To set tsuids,
+This method is a setter and getter. If no `tsuids` are provided, return the query `tsuids`. TSUIDs are __required__ to encode a tsuid query. To set `tsuids`,
 
 ``` javascript
 tQuery.tsuids( '001,002,003' );
