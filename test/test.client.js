@@ -608,13 +608,13 @@ describe( 'lib/client', function tests() {
 		it( 'should get the list of aggregators', function test( done ) {
 			var client = createClient();
 
-			client.aggregators( function onData( error, data ) {
+			client.aggregators( function onAggs( error, aggregators ) {
 				if ( error ) {
 					assert.notOk( true, 'Aggregators request returned an error.' );
 					done();
 					return;
 				}
-				assert.ok( true );
+				assert.deepEqual( aggregators, tsdb.aggregators );
 				done();
 			});
 		});
@@ -635,6 +635,69 @@ describe( 'lib/client', function tests() {
 			});
 		});
 
-	});
+	}); // end TESTS api/aggregators
+
+	describe( 'api/metrics', function tests() {
+
+		it( 'should provide a method to query TSDB for a list of metrics', function test() {
+			var client = createClient();
+			expect( client.metrics ).to.be.a( 'function' );
+		});
+
+		it( 'should throw an error if provided argument is not a function', function test() {
+			var client = createClient(),
+				values = [
+					'5',
+					[],
+					{},
+					5,
+					null,
+					undefined,
+					NaN,
+					true
+				];
+
+			for ( var i = 0; i < values.length; i++ ) {
+				expect( badValue( values[i] ) ).to.throw( Error );
+			}
+
+			function badValue( value ) {
+				return function() {
+					client.metrics( value );
+				};
+			}
+		});
+
+		it( 'should get the list of metrics', function test( done ) {
+			var client = createClient();
+
+			client.metrics( function onMetrics( error, metrics ) {
+				if ( error ) {
+					assert.notOk( true, 'Metrics request returned an error.' );
+					done();
+					return;
+				}
+				assert.deepEqual( metrics, tsdb.metrics );
+				done();
+			});
+		});
+
+		it( 'should pass along any metrics request errors to the callback', function test( done ) {
+			var client = createClient();
+
+			client.host( 'badhost' );
+
+			client.metrics( function onData( error, data ) {
+				if ( error ) {
+					assert.ok( true );
+					done();
+					return;
+				}
+				assert.notOk( true );
+				done();
+			});
+		});
+
+	}); // end TESTS api/metrics
 
 });

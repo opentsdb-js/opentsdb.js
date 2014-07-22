@@ -95,7 +95,7 @@
 		response.send( 200, JSON.stringify( AGGREGATORS ) );
 	});
 
-	app.get( 'api/suggest', function onResponse( request, response ) {
+	app.get( '/api/suggest', function onResponse( request, response ) {
 		var type = request.query.type,
 			max = request.query.max;
 
