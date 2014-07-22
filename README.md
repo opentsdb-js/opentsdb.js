@@ -172,10 +172,10 @@ The `opentsdb` module supports both query types. To create queries,
 var opentsdb = require( 'opentsdb' );
 
 // Metric query generator:
-var mQuery = opentsdb.mQuery();
+var mQuery = opentsdb.mquery();
 
 // TSUID query generator:
-var tQuery = opentsdb.tQuery();
+var tQuery = opentsdb.tquery();
 ```
 
 The distinctions between the two types are 1) metric queries require a metric name and tsuid queries require a string list of tsuids and 2) tsuid queries do not accept tags. Otherwise, both types have the same methods, as outlined below.
@@ -279,7 +279,7 @@ All setter/getter methods when used as setters are chainable. For example,
 ``` javascript
 var opentsdb = require( 'opentsdb' ),
 	client = opentsdb.client(),
-	mQuery = opentsdb.mQuery();
+	mQuery = opentsdb.mquery();
 
 mQuery
 	.aggregator( 'sum' )
