@@ -502,6 +502,7 @@ describe( 'lib/client', function tests() {
 
 		it( 'should throw an error if provided argument is not a function', function test() {
 			var client = createClient(),
+				query = mQuery(),
 				values = [
 					'5',
 					[],
@@ -510,8 +511,12 @@ describe( 'lib/client', function tests() {
 					null,
 					undefined,
 					NaN,
-					function(){}
+					true
 				];
+
+			query.metric( 'cpu.utilization' );
+			client.start( Date.now() )
+				.queries( query );
 
 			for ( var i = 0; i < values.length; i++ ) {
 				expect( badValue( values[i] ) ).to.throw( Error );
@@ -568,5 +573,68 @@ describe( 'lib/client', function tests() {
 		});
 
 	}); // end TESTS api/get
+
+	describe( 'api/aggregators', function tests() {
+
+		it( 'should provide a method to query TSDB for a list of aggregators', function test() {
+			var client = createClient();
+			expect( client.aggregators ).to.be.a( 'function' );
+		});
+
+		it( 'should throw an error if provided argument is not a function', function test() {
+			var client = createClient(),
+				values = [
+					'5',
+					[],
+					{},
+					5,
+					null,
+					undefined,
+					NaN,
+					true
+				];
+
+			for ( var i = 0; i < values.length; i++ ) {
+				expect( badValue( values[i] ) ).to.throw( Error );
+			}
+
+			function badValue( value ) {
+				return function() {
+					client.aggregators( value );
+				};
+			}
+		});
+
+		it( 'should get the list of aggregators', function test( done ) {
+			var client = createClient();
+
+			client.aggregators( function onData( error, data ) {
+				if ( error ) {
+					assert.notOk( true, 'Aggregators request returned an error.' );
+					done();
+					return;
+				}
+				assert.ok( true );
+				done();
+			});
+		});
+
+		it( 'should pass along any aggregator request errors to the callback', function test( done ) {
+			var client = createClient();
+
+			client.host( 'badhost' );
+
+			client.aggregators( function onData( error, data ) {
+				if ( error ) {
+					assert.ok( true );
+					done();
+					return;
+				}
+				assert.notOk( true );
+				done();
+			});
+		});
+
+	});
 
 });
