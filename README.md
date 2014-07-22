@@ -129,6 +129,33 @@ client.get( function onData( error, data ) {
 });
 ```
 
+#### client.aggregators( clbk )
+
+Requests the current list of supported aggregation operators from OpenTSDB. Results are passed along to the provided callback.
+
+``` javascript
+client.aggregators( function onResponse( error, aggregators ) {
+	if ( error ) {
+		console.error( JSON.stringify( error ) );
+		return;
+	}
+	console.log( JSON.stringify( aggregators ) );
+});
+```
+
+#### client.metrics( clbk )
+
+Requests the current list of stored metrics from OpenTSDB. Results are passed along to the provided callback.
+
+``` javascript
+client.metrics( function onResponse( error, metrics ) {
+	if ( error ) {
+		console.error( JSON.stringify( error ) );
+		return;
+	}
+	console.log( JSON.stringify( metrics ) );
+});
+```
 
 
 ### Queries
