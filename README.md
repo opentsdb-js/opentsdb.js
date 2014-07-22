@@ -274,7 +274,7 @@ tQuery.tsuids( '001,002,003' );
 ---
 ## Notes
 
-All setter/getter methods when used as setters are chainable. For example,
+When used as setters, all setter/getter methods are chainable. For example,
 
 ``` javascript
 var opentsdb = require( 'opentsdb' ),
