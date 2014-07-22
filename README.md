@@ -247,7 +247,38 @@ tQuery.tsuids( '001,002,003' );
 ---
 ## Notes
 
+All setter/getter methods when used as setters are chainable. For example,
 
+``` javascript
+var opentsdb = require( 'opentsdb' ),
+	client = opentsdb.client(),
+	mQuery = opentsdb.mQuery();
+
+mQuery
+	.aggregator( 'sum' )
+	.downsample( '5m-avg' )
+	.rate( false )
+	.metric( 'mem.utilization' )
+	.tags( 'nid', '1234,5678' )
+	.tags( 'name', 'beep,boop' );
+
+client
+	.host( '192.168.92.111' )
+	.port( 8080 )
+	.ms( true )
+	.arrays( true )
+	.tsuids( true )
+	.start( Date.now()-1000 ) 
+	.end( Date.now() )
+	.queries( mQuery )
+	.get( function onData( error, data ) {
+		if ( error ) {
+			console.error( JSON.stringify( error ) );
+			return;
+		}
+		console.log( JSON.stringify( data ) );
+	});
+```
 
 
 ---
