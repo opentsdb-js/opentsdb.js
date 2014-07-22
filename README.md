@@ -1,7 +1,7 @@
 OpenTSDB
 ========
 
-JavaScript OpenTSDB client library.
+JavaScript [OpenTSDB](http://opentsdb.net) client library.
 
 
 
@@ -103,7 +103,7 @@ client.queries( mQuery, mQuery, tQuery );
 
 #### client.url()
 
-Generate an OpenTSDB request URL based on a client's configuration. Both queries and a start time must have been set before running this method.
+Generate an OpenTSDB request URL based on a client's configuration. Both queries and a start time are __required__ before running this method.
 
 ``` javascript
 var url = client.url();
@@ -127,7 +127,13 @@ client.get( function onData( error, data ) {
 
 ### Queries
 
+OpenTSDB permits two query [types](/docs/build/html/api_http/query/index.html): _metric_ and _tsuid_.
 
+Metric queries are general queries which return an indeterministic number of timeseries. OpenTSDB implements metric queries by searching for timeseries matching the metric criteria, e.g., by `metric name` and `tag`.
+
+TSUID queries request a specific __t__ime__s__eries having a __u__nique __id__. Every timeseries has an assigned [unique identifier](http://opentsdb.net/docs/build/html/user_guide/backends/hbase.html#uid-table-schema), based on `metric name` and any `tags`.
+
+The `OpenTSDB` module supports both query types.
 
 
 
