@@ -4,7 +4,7 @@ TODO
 
 ### General
 
-1. 	Incorporate polling
+1. 	setTimeout/setInterval
 2. 	Push data (Bixby)
 3. 	Add annotations support
 4. 	Should pagination of metric list be supported?

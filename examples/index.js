@@ -4,7 +4,7 @@
 *
 *
 *	DESCRIPTION:
-*		- Demonstrates use of OpenTSDB client.
+*		- Demonstrates use of an OpenTSDB client.
 *
 *
 *	NOTES:
@@ -88,7 +88,7 @@
 	});
 
 	/**
-	* Returns (depending on TSDB version):
+	* Returns (depending on OpenTSDB version):
 	*
 	*	["min","mimmin","max","mimmax","dev","sum","avg","zimsum"]
 	*/
