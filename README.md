@@ -87,7 +87,7 @@ This method is a setter/getter. If no `time` is provided, the method returns the
 client.end( Date.now() );
 ```
 
-If at time `t1` you specify an end time and later decide at `t2` to make a request without specifying an end time, you can `null` the configuration value.
+If at time `t1` you specify an end time and later decide at `t2` to make a request which does not specify an end time, you can `null` the configuration value.
 
 ``` javascript
 client.end( null );
@@ -107,6 +107,12 @@ Generate an OpenTSDB request URL based on a client's configuration. Both queries
 
 ``` javascript
 var url = client.url();
+```
+
+An example returned `url`:
+
+```
+http://127.0.0.1:4242/api/query?ms=true&arrays=true&showTSUIDs=true&start=72000ms-ago&end=60s-ago&m=avg:5s-avg:cpu.utilization{nid=*}&m=avg:5s-avg:mem.utilization{nid=*}
 ```
 
 #### client.get( clbk )
