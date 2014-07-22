@@ -129,11 +129,107 @@ client.get( function onData( error, data ) {
 
 OpenTSDB permits two query [types](/docs/build/html/api_http/query/index.html): _metric_ and _tsuid_.
 
-Metric queries are general queries which return an indeterministic number of timeseries. OpenTSDB implements metric queries by searching for timeseries matching the metric criteria, e.g., by `metric name` and `tag`.
+Metric queries are general queries which return an indeterministic number of timeseries. OpenTSDB implements metric queries by searching for timeseries matching the metric criteria, e.g., `metric name` and `tag`.
 
-TSUID queries request a specific timeseries having a unique id. Every timeseries has an assigned [unique identifier](http://opentsdb.net/docs/build/html/user_guide/backends/hbase.html#uid-table-schema), based on `metric name` and any `tags`.
+TSUID queries request a specific timeseries having a unique id. Every timeseries has an assigned [unique identifier](http://opentsdb.net/docs/build/html/user_guide/backends/hbase.html#uid-table-schema), which is based on `metric name` and any `tags`.
 
-The `OpenTSDB` module supports both query types.
+The `OpenTSDB` module supports both query types. To create queries,
+
+``` javascript
+var opentsdb = require( 'opentsdb' );
+
+// Metric query generator:
+var mQuery = opentsdb.mQuery();
+
+// TSUID query generator:
+var tQuery = opentsdb.tQuery();
+```
+
+The distinctions between the two types are 1) metric queries require a metric name and tsuid queries require a string list of tsuids and 2) tsuid queries do not accept tags. Otherwise, both types have the same methods, as outlined below.
+
+#### query.aggregator( [aggregator] )
+
+This method is a setter and getter. If no `aggregator` is provided, returns the query [aggregator](http://opentsdb.net/docs/build/html/api_http/aggregators.html) . The default aggregator is `avg`. To set a different aggregator,
+
+``` javascript
+query.aggregator( 'min' );
+```
+
+#### query.downsample( [downsample] )
+
+This method is a setter and getter. If no `downsample` function is provided, returns the configured downsample function. By default, downsampling is turned off. To specify a downsample function,
+
+``` javascript
+query.downsample( '5s-avg' );
+```
+
+
+#### query.rate( [bool] )
+
+This method is a setter and getter. If no boolean flag is provided, returns the flag indicating whether to return the difference between consecutive data values. By default, the flag is `false`. To turn on difference calculation,
+
+``` javascript
+query.rate( true );
+```
+
+Note that rate calculation requires a set of three options.
+
+
+#### query.rateOptions( [object] )
+
+This method is a setter and getter. If no configuration object is provided, returns the rate options: `counter`, `counterMax`, `resetValue`. `counter` must be a boolean; `counterMax` must be numeric or `null`; and `resetValue` must be numeric.
+
+By default,
+
+``` javascript
+var rateOptions = {
+	"counter": false,
+	"counterMax": null,
+	"resetValue": 0
+};
+```
+
+
+#### mQuery.tags( [tag, [value]] )
+
+This method is a setter and getter. If no arguments are provided, returns all tag names and their values. If a `tag` name is specified, returns the value for that tag. Otherwise, sets a `tag` to the specified `value`.
+
+``` javascript
+mQuery.tags( 'nid', '*' );
+```
+
+The `*` (wildcard) indicates all values for a `tag`.
+
+
+#### mQuery.dtag( tag )
+
+This method deletes a query tag.
+
+``` javascript
+// Add a tag:
+mQuery.tags( 'nid', '*' );
+
+// Delete the tag:
+mQuery.dtag( 'nid' );
+```
+
+
+#### mQuery.metric( [name] )
+
+This method is a setter and getter. If no `metric` is provided, returns the query metric. A metric name is __required__ to encode a `metric` query. To set a metric name,
+
+``` javascript
+mQuery.metric( 'mem.utilization' );
+```
+
+
+#### tQuery.tsuids( [tsuids] )
+
+This method is a setter and getter. If no `tsuids` are provided, return the query tsuids. TSUIDs are __required__ to encode a `tsuid` query. To set tsuids,
+
+``` javascript
+tQuery.tsuids( '001,002,003' );
+```
 
 
 
