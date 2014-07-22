@@ -73,21 +73,21 @@ client.tsuids( true );
 
 #### client.start( [time] )
 
-This method is a setter/getter. If no time is provided, the method returns the configured query start time. Before making an OpenTSDB query, a start time is _required_. To do so,
+This method is a setter/getter. If no `time` is provided, the method returns the configured query start time. Before making an OpenTSDB query, a start time is _required_. To do so,
 
 ``` javascript
-client.start( Date.now() );
+client.start( Date.now()-1000 );
 ```
 
-#### client.end( [time|null] )
+#### client.end( [time | null] )
 
-This method is a setter/getter. If no time is provided, the method returns the configured query end time. An end time is optional when making an OpenTSDB query. If no end time is set upon making a query, OpenTSDB defaults to the time at which the request is made.
+This method is a setter/getter. If no `time` is provided, the method returns the configured query end time. An end time is optional when making an OpenTSDB query. If no end time is set upon making a query, OpenTSDB defaults to the time at which the request is made.
 
 ``` javascript
-client.end( Date.now()+1000 );
+client.end( Date.now() );
 ```
 
-If at time `t1` you specify an end time and later decide at `t2` to make a request without specifying an end time, you can null the configuration value.
+If at time `t1` you specify an end time and later decide at `t2` to make a request without specifying an end time, you can `null` the configuration value.
 
 ``` javascript
 client.end( null );
