@@ -33,7 +33,7 @@ OpenTSDB clients are configurable and have the following methods...
 
 #### client.host( [host] )
 
-This method is a setter/getter. If no `host` is provided, the method returns the configured host. By default, the client host is `127.0.0.1`. To point to a remote host,
+This method is a setter/getter. If no `host` is provided, the method returns the configured `host`. By default, the client `host` is `127.0.0.1`. To point to a remote `host`,
 
 ``` javascript
 client.host( '192.168.92.11' );
@@ -41,7 +41,7 @@ client.host( '192.168.92.11' );
 
 #### client.port( [port] )
 
-This method is a setter/getter. If no `port` is provided, the method returns the configured port. By default, the client port is `4242`. To set a different port,
+This method is a setter/getter. If no `port` is provided, the method returns the configured `port`. By default, the client port is `4242`. To set a different `port`,
 
 ``` javascript
 client.port( 8080 );
@@ -73,7 +73,7 @@ client.tsuids( true );
 
 #### client.start( [time] )
 
-This method is a setter/getter. If no `time` is provided, the method returns the configured query start time. Before making an OpenTSDB query, a start time is __required__. To do so,
+This method is a setter/getter. If no `time` is provided, the method returns the configured query start `time`. Before making an OpenTSDB query, a start time is __required__. To do so,
 
 ``` javascript
 client.start( Date.now()-1000 );
@@ -81,7 +81,7 @@ client.start( Date.now()-1000 );
 
 #### client.end( [time | null] )
 
-This method is a setter/getter. If no `time` is provided, the method returns the configured query end time. An end time is optional when making an OpenTSDB query. If no end time is set upon making a query, OpenTSDB defaults to the time at which the request is made.
+This method is a setter/getter. If no `time` is provided, the method returns the configured query end `time`. An end time is optional when making an OpenTSDB query. If no end time is set upon making a query, OpenTSDB defaults to the time at which the request is made.
 
 ``` javascript
 client.end( Date.now() );
@@ -157,7 +157,7 @@ query.aggregator( 'min' );
 
 #### query.downsample( [downsample] )
 
-This method is a setter and getter. If no `downsample` function is provided, returns the configured downsample function. By default, downsampling is turned off. To specify a `downsample` function,
+This method is a setter and getter. If no `downsample` function is provided, returns the configured `downsample` function. By default, downsampling is turned off. To specify a `downsample` function,
 
 ``` javascript
 query.downsample( '5s-avg' );
@@ -216,7 +216,7 @@ mQuery.dtag( 'nid' );
 
 #### mQuery.metric( [name] )
 
-This method is a setter and getter. If no `metric name` is provided, returns the query metric. A `metric name` is __required__ to encode a metric query. To set a `metric name`,
+This method is a setter and getter. If no `metric name` is provided, returns the query `metric name`. A `metric name` is __required__ to encode a metric query. To set a `metric name`,
 
 ``` javascript
 mQuery.metric( 'mem.utilization' );
@@ -225,7 +225,7 @@ mQuery.metric( 'mem.utilization' );
 
 #### tQuery.tsuids( [tsuids] )
 
-This method is a setter and getter. If no `tsuids` are provided, return the query `tsuids`. TSUIDs are __required__ to encode a tsuid query. To set `tsuids`,
+This method is a setter and getter. If no `tsuids` are provided, return the query `tsuids`. `tsuids` are __required__ to encode a tsuid query. To set `tsuids`,
 
 ``` javascript
 tQuery.tsuids( '001,002,003' );
