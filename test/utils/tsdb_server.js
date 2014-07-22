@@ -14,7 +14,9 @@
 	var PORT = 4242,
 		URL = '',
 		NIDS = new Array( 10 ),
-		QUERY = '';
+		QUERY = '',
+		AGGREGATORS = [ 'avg', 'sum', 'min', 'max', 'dev', 'zimsum', 'mimmax', 'mimmin' ],
+		METRICS = [ 'cpu.utilization', 'mem.utilization', 'disk.utilization' ];
 
 	URL += 'http://127.0.0.1:' + PORT;
 
@@ -89,6 +91,21 @@
 		response.send( 200, JSON.stringify( data ) );
 	});
 
+	app.get( '/api/aggregators', function onRequest( request, response ) {
+		response.send( 200, JSON.stringify( AGGREGATORS ) );
+	});
+
+	app.get( 'api/suggest', function onResponse( request, response ) {
+		var type = request.query.type,
+			max = request.query.max;
+
+		if ( type !== 'metrics' ) {
+			response.send( 404, 'Resource not found' );
+			return;
+		}
+		response.send( 200, JSON.stringify( METRICS ) );
+	});
+
 	app.get( '/bad_body', function onRequest( request, response ) {
 		response.writeHead( 200 );
 		response.end();
@@ -123,6 +140,8 @@
 	app.listen( PORT );
 	app.url = URL;
 	app.query = QUERY;
+	app.aggregators = AGGREGATORS;
+	app.metrics = METRICS;
 
 
 	// EXPORTS //

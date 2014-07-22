@@ -139,7 +139,7 @@ Metric queries are general queries which return an indeterministic number of tim
 
 TSUID queries request a specific timeseries having a unique id. Every timeseries has an assigned [unique identifier](http://opentsdb.net/docs/build/html/user_guide/backends/hbase.html#uid-table-schema), which is based on `metric name` and any `tags`.
 
-The `OpenTSDB` module supports both query types. To create queries,
+The `opentsdb` module supports both query types. To create queries,
 
 ``` javascript
 var opentsdb = require( 'opentsdb' );
