@@ -13,7 +13,7 @@ For use in Node.js,
 $ npm install opentsdb
 ```
 
-For use in the browser, use browserify.
+For use in the browser, use [browserify](https://github.com/substack/node-browserify).
 
 
 
