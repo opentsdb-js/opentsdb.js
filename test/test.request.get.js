@@ -21,10 +21,6 @@ var expect = chai.expect,
 
 describe( 'lib/request/get', function tests() {
 
-	// SETUP //
-
-	var URL = 'http://127.0.0.1:4242';
-
 	// TESTS //
 
 	it( 'should export a function', function test() {
