@@ -49,7 +49,7 @@ client.port( 8080 );
 
 #### client.ms( [bool] )
 
-This method is a setter/getter. If no boolean flag is provided, the method returns the flag indicating whether time should be output at millisecond resolution. By default, millisecond resolution is on, so as to ensure timestamps are 13 digit Unix timestamps. To turn off millisecond resolution,
+This method is a setter/getter. If no boolean flag is provided, the method returns the flag indicating whether time should be output at millisecond resolution. By default, millisecond resolution is on, so as to ensure timestamps are 13 digit UNIX timestamps. To turn off millisecond resolution,
 
 ``` javascript
 client.ms( false );
@@ -149,7 +149,7 @@ The distinctions between the two types are 1) metric queries require a metric na
 
 #### query.aggregator( [aggregator] )
 
-This method is a setter and getter. If no `aggregator` is provided, returns the query [aggregator](http://opentsdb.net/docs/build/html/api_http/aggregators.html) . The default aggregator is `avg`. To set a different `aggregator`,
+This method is a setter/getter. If no `aggregator` is provided, returns the query [aggregator](http://opentsdb.net/docs/build/html/api_http/aggregators.html) . The default aggregator is `avg`. To set a different `aggregator`,
 
 ``` javascript
 query.aggregator( 'min' );
@@ -157,7 +157,7 @@ query.aggregator( 'min' );
 
 #### query.downsample( [downsample] )
 
-This method is a setter and getter. If no `downsample` function is provided, returns the configured `downsample` function. By default, downsampling is turned off. To specify a `downsample` function,
+This method is a setter/getter. If no `downsample` function is provided, returns the configured `downsample` function. By default, downsampling is turned off. To specify a `downsample` function,
 
 ``` javascript
 query.downsample( '5s-avg' );
@@ -166,7 +166,7 @@ query.downsample( '5s-avg' );
 
 #### query.rate( [bool] )
 
-This method is a setter and getter. If no boolean flag is provided, returns the flag indicating whether to return the difference between consecutive data values. By default, the flag is `false`. To turn on difference calculation,
+This method is a setter/getter. If no boolean flag is provided, returns the flag indicating whether to return the difference between consecutive data values. By default, the flag is `false`. To turn on difference calculation,
 
 ``` javascript
 query.rate( true );
@@ -177,7 +177,7 @@ Note that rate calculation requires a set of three options.
 
 #### query.rateOptions( [object] )
 
-This method is a setter and getter. If no configuration object is provided, returns the rate options: `counter`, `counterMax`, `resetValue`. `counter` must be a boolean; `counterMax` must be numeric or `null`; and `resetValue` must be numeric.
+This method is a setter/getter. If no configuration object is provided, returns the rate options: `counter`, `counterMax`, `resetValue`. `counter` must be a boolean; `counterMax` must be numeric or `null`; and `resetValue` must be numeric.
 
 By default,
 
@@ -192,7 +192,7 @@ var rateOptions = {
 
 #### mQuery.tags( [tag, [value]] )
 
-This method is a setter and getter. If no arguments are provided, returns all tag names and their values. If a `tag` name is specified, returns the value for that tag. Otherwise, sets a `tag` to the specified `value`.
+This method is a setter/getter. If no arguments are provided, returns all tag names and their values. If a `tag` name is specified, returns the value for that tag. Otherwise, sets a `tag` to the specified `value`.
 
 ``` javascript
 mQuery.tags( 'nid', '*' );
@@ -216,7 +216,7 @@ mQuery.dtag( 'nid' );
 
 #### mQuery.metric( [name] )
 
-This method is a setter and getter. If no `metric name` is provided, returns the query `metric name`. A `metric name` is __required__ to encode a metric query. To set a `metric name`,
+This method is a setter/getter. If no `metric name` is provided, returns the query `metric name`. A `metric name` is __required__ to encode a metric query. To set a `metric name`,
 
 ``` javascript
 mQuery.metric( 'mem.utilization' );
@@ -225,7 +225,7 @@ mQuery.metric( 'mem.utilization' );
 
 #### tQuery.tsuids( [tsuids] )
 
-This method is a setter and getter. If no `tsuids` are provided, return the query `tsuids`. `tsuids` are __required__ to encode a tsuid query. To set `tsuids`,
+This method is a setter/getter. If no `tsuids` are provided, return the query `tsuids`. `tsuids` are __required__ to encode a tsuid query. To set `tsuids`,
 
 ``` javascript
 tQuery.tsuids( '001,002,003' );
