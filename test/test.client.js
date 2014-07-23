@@ -253,6 +253,73 @@ describe( 'lib/client', function tests() {
 	}); // end TESTS api/tsuids
 
 
+	describe( 'api/annotations', function tests() {
+
+		it( 'should provide a method to specify whether or not to return annotations', function test() {
+			var client = createClient();
+			expect( client.annotations ).to.be.a( 'function' );
+		});
+
+		it( 'should not allow a non-string annotations setting', function test() {
+			var client = createClient(),
+				values = [
+					true,
+					[],
+					{},
+					5,
+					null,
+					undefined,
+					NaN,
+					function(){}
+				];
+
+			for ( var i = 0; i < values.length; i++ ) {
+				expect( badValue( values[i] ) ).to.throw( Error );
+			}
+
+			function badValue( value ) {
+				return function() {
+					client.annotations( value );
+				};
+			}
+		});
+
+		it( 'should not allow an unrecognized annotations option', function test() {
+			var client = createClient(),
+				value = 'beep';
+
+			expect( badValue( value ) ).to.throw( Error );
+
+			function badValue( value ) {
+				return function() {
+					client.annotations( value );
+				};
+			}
+		});
+
+		it( 'should set an annotations option', function test() {
+			var client = createClient(),
+				option = 'all';
+
+			client.annotations( option );
+			assert.strictEqual( client.annotations(), option );
+		});
+
+		it( 'should allow the annotations option to be set to 1 of 3 values: none, local, all', function test() {
+			var client = createClient(),
+				options = [ 'none', 'local', 'all' ],
+				option;
+
+			for ( var i = 0; i < options.length; i++ ) {
+				option = options[ i ];
+				client.annotations( option );
+				assert.strictEqual( client.annotations(), option );
+			}
+		});
+
+	}); // end TESTS api/annotations
+
+
 	describe( 'api/start', function tests() {
 
 		it( 'should provide a method to get/set the query start time', function test() {

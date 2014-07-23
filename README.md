@@ -71,6 +71,19 @@ This method is a setter/getter. If no boolean flag is provided, the method retur
 client.tsuids( true );
 ```
 
+#### client.annotations( [option] )
+
+This method is a setter/getter. If no option is provided, the method returns the option indicating whether annotations should accompany data output. OpenTSDB supports two types of annotations: local and global. By default, annotations are not returned. 
+
+Three options are possible: `none`, `local`, and `all`. `none` indicates to return no annotations. `local` indicates to return only local annotations; i.e., annotations specific to a timeseries. `all` indicates to return both local and global annotations. OpenTSDB does not support returning only global annotations.
+
+To set annotation output,
+
+``` javascript
+client.annotations( 'all' );
+```
+
+
 #### client.start( [time] )
 
 This method is a setter/getter. If no `time` is provided, the method returns the configured query start `time`. Before making an OpenTSDB query, a start time is __required__. To do so,
@@ -112,7 +125,7 @@ var url = client.url();
 An example returned `url`:
 
 ```
-http://127.0.0.1:4242/api/query?ms=true&arrays=true&show_tsuids=true&start=72000ms-ago&end=60s-ago&m=avg:5s-avg:cpu.utilization{nid=*}&m=avg:5s-avg:mem.utilization{nid=*}
+http://127.0.0.1:4242/api/query?ms=true&arrays=true&show_tsuids=true&no_annotations=true&global_annotations=false&start=72000ms-ago&end=60s-ago&m=avg:5s-avg:cpu.utilization{nid=*}&m=avg:5s-avg:mem.utilization{nid=*}
 ```
 
 #### client.get( clbk )
@@ -295,6 +308,7 @@ client
 	.ms( true )
 	.arrays( true )
 	.tsuids( true )
+	.annotations( 'all' )
 	.start( Date.now()-1000 ) 
 	.end( Date.now() )
 	.queries( mQuery )

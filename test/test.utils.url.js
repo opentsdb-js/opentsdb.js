@@ -57,6 +57,7 @@ describe( 'lib/utils/url', function tests() {
 			ms = false,
 			arrays = false,
 			tsuids = true,
+			annotations = 'local',
 
 			// Query:
 			aggregator = 'sum',
@@ -104,7 +105,8 @@ describe( 'lib/utils/url', function tests() {
 				.end( end )
 				.ms( ms )
 				.arrays( arrays )
-				.tsuids( tsuids );
+				.tsuids( tsuids )
+				.annotations( annotations );
 
 			queries.shift();
 				
@@ -140,6 +142,8 @@ describe( 'lib/utils/url', function tests() {
 			assert.ok( new RegExp( 'arrays='+arrays ).test( url ), 'Does not contain array output flag.' );
 
 			assert.ok( new RegExp( 'show_tsuids='+tsuids ).test( url ), 'Does not contain tsuids output flag.' );
+
+			assert.ok( new RegExp( 'no_annotations=false&global_annotations=false' ).test( url ), 'Has incorrect annotations flags' );
 
 			assert.ok( new RegExp( '&m=' ).test( url ), 'Does not specific a metric query.' );
 
@@ -291,6 +295,38 @@ describe( 'lib/utils/url', function tests() {
 				.create();
 
 			assert.notOk( new RegExp( '&end=' ).test( url ), 'Incorrectly contains an end time parameter.' );
+		});
+
+		it( 'should properly encode annotations preferences', function test() {
+			var client = createClient(),
+				query = mQuery(),
+				url = getURL( client ),
+				_url;
+
+			setMetricQuery( query );
+			setClient( client, query );
+
+			// No annotations:
+			client.annotations( 'none' );
+			_url = url.template()
+				.create();
+
+			assert.ok( new RegExp( 'no_annotations=true&global_annotations=false' ).test( _url ), 'Incorrectly sets the annotations parameters for no annotations.' );
+
+			// Local annotations:
+			client.annotations( 'local' );
+			_url = url.template()
+				.create();
+
+			assert.ok( new RegExp( 'no_annotations=false&global_annotations=false' ).test( _url ), 'Incorrectly sets the annotations parameters for local annotations.' );
+
+			// All annotations:
+			client.annotations( 'all' );
+			_url = url.template()
+				.create();
+
+			assert.ok( new RegExp( 'no_annotations=false&global_annotations=true' ).test( _url ), 'Incorrectly sets the annotations parameters for all annotations.' );
+
 		});
 
 	});
