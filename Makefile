@@ -35,7 +35,7 @@ ISTANBUL_HTML_REPORT_PATH ?= $(ISTANBUL_OUT)/lcov-report/index.html
 # FILES #
 
 # Source files:
-SOURCES ?= lib/*.js
+SOURCES ?= lib/*.js lib/**/*.js
 
 # Test files:
 TESTS ?= test/*.js
