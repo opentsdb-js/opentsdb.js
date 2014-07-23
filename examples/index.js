@@ -65,7 +65,7 @@
 		.ms( true )
 		.arrays( true )
 		.tsuids( true )
-		.annotations( 'all' )
+		.annotations( 'none' )
 		.queries( query )
 		.start( start )
 		.end( end );
@@ -76,7 +76,7 @@
 	/**
 	* Returns:
 	*
-	*	http://127.0.0.1:4242/api/query?ms=true&arrays=true&show_tsuids=true&no_annotations=false&global_annotations=true&start=1406003885818&end=1406003897818&m=avg:cpu.utilization{tag=*}
+	*	http://127.0.0.1:4242/api/query?ms=true&arrays=true&show_tsuids=true&no_annotations=true&global_annotations=false&start=1406003885818&end=1406003897818&m=avg:cpu.utilization{tag=*}
 	*/
 
 	// Get the list of supported aggregators:
