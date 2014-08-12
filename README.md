@@ -1,6 +1,6 @@
 OpenTSDB
 ========
-[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Dependencies][dependencies-image]][dependencies-url] [![Dev Dependencies][dev-dependencies-image]][dev-dependencies-url] [![Github Issues][github-issues-image]][github-issues-url]
+[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Dependencies][dependencies-image]][dependencies-url] [![Github Issues][github-issues-image]][github-issues-url]
 
 JavaScript [OpenTSDB](http://opentsdb.net) client library.
 
