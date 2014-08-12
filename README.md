@@ -1,6 +1,6 @@
 OpenTSDB
 ========
-[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Github Issues][github-issues-image]][github-issues-url] [![License][license-image]][license-url]
+[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Dependencies][dependencies-image]][dependencies-url] [![Github Issues][github-issues-image]][github-issues-url]
 
 JavaScript [OpenTSDB](http://opentsdb.net) client library.
 
@@ -384,7 +384,7 @@ Copyright &copy; 2014. Athan Reines.
 [travis-url]: https://travis-ci.org/kgryte/opentsdb.js
 [coveralls-image]: https://img.shields.io/coveralls/kgryte/opentsdb.js/master.svg
 [coveralls-url]: https://coveralls.io/r/kgryte/opentsdb.js?branch=master
+[dependencies-image]: http://img.shields.io/david/kgryte/opentsdb.js.svg
+[dependencies-url]: https://david-dm.org/kgryte/opentsdb.js
 [github-issues-image]: http://img.shields.io/github/issues/kgryte/opentsdb.js.svg
 [github-issues-url]: https://github.com/kgryte/opentsdb.js/issues
-[license-image]: http://img.shields.io/npm/l/opentsdb.svg
-[license-url]: https://npmjs.org/package/opentsdb
