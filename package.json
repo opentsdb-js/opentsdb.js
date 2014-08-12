@@ -10,8 +10,9 @@
     {}
   ],
   "scripts": {
-    "test": "mocha",
-    "test-cov": "istanbul cover _mocha --dir ./reports/coverage -- -R spec "
+    "test": "./node_modules/mocha/bin/_mocha",
+    "test-cov": "istanbul cover ./node_modules/mocha/bin/_mocha --dir ./reports/coverage -- -R spec",
+    "coveralls": "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha --dir ./reports/coveralls/coverage --report lcovonly -- -R spec && cat ./reports/coveralls/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./reports/coveralls"
   },
   "main": "./lib",
   "repository": {
@@ -32,9 +33,11 @@
     "request": "^2.37.0"
   },
   "devDependencies": {
-    "chai": "*",
+    "chai": "1.x.x",
+    "coveralls": "^2.11.1",
     "express": "^4.6.1",
-    "mocha": "*"
+    "istanbul": "^0.3.0",
+    "mocha": "1.x.x"
   },
   "licenses": [
     {

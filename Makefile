@@ -24,7 +24,7 @@ MOCHA_REPORTER ?= spec
 # ISTANBUL #
 
 # Istanbul configuration:
-ISTANBUL ?= Istanbul
+ISTANBUL ?= ./node_modules/.bin/istanbul
 ISTANBUL_OUT ?= ./reports/coverage
 ISTANBUL_REPORT ?= lcov
 ISTANBUL_LCOV_INFO_PATH ?= $(ISTANBUL_OUT)/lcov.info
