@@ -378,9 +378,9 @@ $ open reports/coverage/lcov-report/index.html
 Copyright &copy; 2014. Athan Reines.
 
 
-[npm-image]: https://badge.fury.io/js/opentsdb.svg
+[npm-image]: http://img.shields.io/npm/v/opentsdb.svg
 [npm-url]: https://npmjs.org/package/opentsdb
-[travis-image]: https://travis-ci.org/kgryte/opentsdb.js.svg?branch=master
+[travis-image]: http://img.shields.io/travis/kgryte/opentsdb.js/master.svg
 [travis-url]: https://travis-ci.org/kgryte/opentsdb.js
-[coveralls-image]: https://img.shields.io/coveralls/kgryte/opentsdb.js.svg
+[coveralls-image]: https://img.shields.io/coveralls/kgryte/opentsdb.js/master.svg
 [coveralls-url]: https://coveralls.io/r/kgryte/opentsdb.js?branch=master
