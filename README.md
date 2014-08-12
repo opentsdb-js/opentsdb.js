@@ -1,5 +1,6 @@
 OpenTSDB
 ========
+[![Coverage Status](https://img.shields.io/coveralls/kgryte/opentsdb.js.svg)](https://coveralls.io/r/kgryte/opentsdb.js?branch=master)
 
 JavaScript [OpenTSDB](http://opentsdb.net) client library.
 
