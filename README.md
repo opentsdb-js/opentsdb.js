@@ -330,13 +330,7 @@ client
 
 Unit tests use the [Mocha](http://visionmedia.github.io/mocha) test framework with [Chai](http://chaijs.com) assertions.
 
-Assuming you have installed Mocha,
-
-``` bash
-$ npm install -g mocha
-```
-
-execute the following command in the top-level application directory to run the tests:
+To run the tests, execute the following command in the top-level application directory to run the tests:
 
 ``` bash
 $ make test
@@ -347,13 +341,9 @@ All new feature development should have corresponding unit tests to validate cor
 
 ### Test Coverage
 
-Assuming you have installed [Istanbul](https://github.com/gotwarlost/istanbul),
+This repository uses [Istanbul](https://github.com/gotwarlost/istanbul) as its code coverage tool.
 
-``` bash
-$ npm install -g istanbul
-```
-
-execute the following command to generate a test coverage report:
+To generate a test coverage report, execute the following command:
 
 ``` bash
 $ make test-cov
