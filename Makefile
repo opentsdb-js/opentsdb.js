@@ -78,6 +78,7 @@ test-mocha: node_modules
 test-cov: test-istanbul-mocha
 
 test-istanbul-mocha: node_modules
+	NODE_ENV=$(NODE_ENV) \
 	NODE_PATH=$(NODE_PATH_TEST) \
 	$(ISTANBUL) cover \
 	--dir $(ISTANBUL_OUT) --report $(ISTANBUL_REPORT) \
