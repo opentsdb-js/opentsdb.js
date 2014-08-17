@@ -109,6 +109,36 @@
 	*	["metric1","metric2","metric3",...,"metricN"]
 	*/
 
+	// Get the running configuration for OpenTSDB:
+	client.config( function onResponse( error, data ) {
+		if ( error ) {
+			console.error( JSON.stringify( error ) );
+			return;
+		}
+		console.log( 'CONFIG: ' + JSON.stringify( data ) );
+	});
+
+	/**
+	* Returns (will depend on the OpenTSDB configuration):
+	*
+	*	{"tsd.core.auto_create_metrics":"true","tsd.core.meta.enable_realtime_ts":"false",...}
+	*/
+
+	// Get the OpenTSDB version:
+	client.version( function onResponse( error, data ) {
+		if ( error ) {
+			console.error( JSON.stringify( error ) );
+			return;
+		}
+		console.log( 'VERSION: ' + JSON.stringify( data ) );
+	});
+
+	/**
+	* Returns (will depend on the running OpenTSDB):
+	*
+	*	{"timestamp":"1362712695",...,"version":"2.0.0"}
+	*/
+
 	// Perform a data request:
 	client.get( function onData( error, data ) {
 		if ( error ) {

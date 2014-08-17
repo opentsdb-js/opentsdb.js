@@ -17,7 +17,8 @@
 		QUERY = '',
 		AGGREGATORS,
 		METRICS,
-		CONFIG;
+		CONFIG,
+		VERSION;
 
 	URL += 'http://127.0.0.1:' + PORT;
 
@@ -96,6 +97,17 @@
 		"tsd.storage.hbase.zk_quorum": "127.0.0.1"
 	};
 
+	VERSION = {
+		"timestamp": "1362712695",
+		"host": "localhost",
+		"repo": "/opt/opentsdb/build",
+		"full_revision": "11c5eefd79f0c800b703ebd29c10e7f924c01572",
+		"short_revision": "11c5eef",
+		"user": "localuser",
+		"repo_status": "MODIFIED",
+		"version": "2.0.0"
+	};
+
 
 	// APP //
 
@@ -163,6 +175,10 @@
 		response.send( 200, JSON.stringify( CONFIG ) );
 	});
 
+	app.get( '/api/version', function onRequest( request, response ) {
+		response.send( 200, JSON.stringify( VERSION ) );
+	});
+
 	app.get( '/bad_body', function onRequest( request, response ) {
 		response.writeHead( 200 );
 		response.end();
@@ -200,6 +216,7 @@
 	app.aggregators = AGGREGATORS;
 	app.metrics = METRICS;
 	app.config = CONFIG;
+	app.version = VERSION;
 
 
 	// EXPORTS //

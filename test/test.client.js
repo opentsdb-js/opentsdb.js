@@ -830,4 +830,67 @@ describe( 'lib/client', function tests() {
 
 	}); // end TESTS api/config
 
+	describe( 'api/version', function tests() {
+
+		it( 'should provide a method to query the version of an OpenTSDB instance', function test() {
+			var client = createClient();
+			expect( client.version ).to.be.a( 'function' );
+		});
+
+		it( 'should throw an error if provided argument is not a function', function test() {
+			var client = createClient(),
+				values = [
+					'5',
+					[],
+					{},
+					5,
+					null,
+					undefined,
+					NaN,
+					true
+				];
+
+			for ( var i = 0; i < values.length; i++ ) {
+				expect( badValue( values[i] ) ).to.throw( Error );
+			}
+
+			function badValue( value ) {
+				return function() {
+					client.version( value );
+				};
+			}
+		});
+
+		it( 'should get the current OpenTSDB version', function test( done ) {
+			var client = createClient();
+
+			client.version( function onResponse( error, version ) {
+				if ( error ) {
+					assert.notOk( true, 'Version request returned an error.' );
+					done();
+					return;
+				}
+				assert.deepEqual( version, tsdb.version );
+				done();
+			});
+		});
+
+		it( 'should pass along any request errors to the callback', function test( done ) {
+			var client = createClient();
+
+			client.host( 'badhost' );
+
+			client.version( function onResponse( error, data ) {
+				if ( error ) {
+					assert.ok( true );
+					done();
+					return;
+				}
+				assert.notOk( true );
+				done();
+			});
+		});
+
+	}); // end TESTS api/version
+
 });

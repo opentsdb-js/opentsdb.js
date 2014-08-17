@@ -1,6 +1,6 @@
 OpenTSDB
 ========
-[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Dependencies][dependencies-image]][dependencies-url] [![Github Issues][github-issues-image]][github-issues-url]
+[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Dependencies][dependencies-image]][dependencies-url]
 
 JavaScript [OpenTSDB](http://opentsdb.net) client library.
 
@@ -182,6 +182,20 @@ client.config( function onResponse( error, config ) {
 		return;
 	}
 	console.log( JSON.stringify( config ) );
+});
+```
+
+#### client.version( clbk )
+
+Requests the current OpenTSDB [version](http://opentsdb.net/docs/build/html/api_http/version.html). Results are passed along to the provided callback.
+
+``` javascript
+client.version( function onResponse( error, version ) {
+	if ( error ) {
+		console.error( JSON.stringify( error ) );
+		return;
+	}
+	console.log( JSON.stringify( version ) );
 });
 ```
 

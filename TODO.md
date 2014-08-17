@@ -6,7 +6,7 @@ TODO
 
 1. 	setTimeout/setInterval
 2. 	Push data (Bixby)
-3. 	version get route
+3. 	
 4. 	Should pagination of metric list be supported?
 5. 	annotations get route
 6. 	Instrument logging (e.g., get_response.js )
