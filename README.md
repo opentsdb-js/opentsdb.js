@@ -171,6 +171,20 @@ client.metrics( function onResponse( error, metrics ) {
 });
 ```
 
+#### client.config( clbk )
+
+Requests the current OpenTSDB [configuration](http://opentsdb.net/docs/build/html/api_http/config.html). Results are passed along to the provided callback.
+
+``` javascript
+client.config( function onResponse( error, config ) {
+	if ( error ) {
+		console.error( JSON.stringify( error ) );
+		return;
+	}
+	console.log( JSON.stringify( config ) );
+});
+```
+
 
 ### Queries
 
