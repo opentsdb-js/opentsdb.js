@@ -18,7 +18,8 @@
 		AGGREGATORS,
 		METRICS,
 		CONFIG,
-		VERSION;
+		VERSION,
+		DROPCACHES;
 
 	URL += 'http://127.0.0.1:' + PORT;
 
@@ -108,6 +109,11 @@
 		"version": "2.0.0"
 	};
 
+	DROPCACHES = {
+		"message": "Caches dropped",
+		"status": "200"
+	};
+
 
 	// APP //
 
@@ -115,6 +121,9 @@
 
 
 	// ROUTES //
+
+
+	// Valid routes...
 
 	app.get( '/api/query', function onRequest( request, response ) {
 		var metric, match, tag = '*', nids,
@@ -179,6 +188,13 @@
 		response.send( 200, JSON.stringify( VERSION ) );
 	});
 
+	app.get( '/api/dropcaches', function onRequest( request, response ) {
+		response.send( 200, JSON.stringify( DROPCACHES ) );
+	});
+
+
+	// Invalid routes...
+
 	app.get( '/bad_body', function onRequest( request, response ) {
 		response.writeHead( 200 );
 		response.end();
@@ -217,6 +233,7 @@
 	app.metrics = METRICS;
 	app.config = CONFIG;
 	app.version = VERSION;
+	app.dropcaches = DROPCACHES;
 
 
 	// EXPORTS //

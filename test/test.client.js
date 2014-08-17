@@ -893,4 +893,67 @@ describe( 'lib/client', function tests() {
 
 	}); // end TESTS api/version
 
+	describe( 'api/dropcaches', function tests() {
+
+		it( 'should provide a method to purge an OpenTSDB in-memory cache', function test() {
+			var client = createClient();
+			expect( client.dropcaches ).to.be.a( 'function' );
+		});
+
+		it( 'should throw an error if provided argument is not a function', function test() {
+			var client = createClient(),
+				values = [
+					'5',
+					[],
+					{},
+					5,
+					null,
+					undefined,
+					NaN,
+					true
+				];
+
+			for ( var i = 0; i < values.length; i++ ) {
+				expect( badValue( values[i] ) ).to.throw( Error );
+			}
+
+			function badValue( value ) {
+				return function() {
+					client.dropcaches( value );
+				};
+			}
+		});
+
+		it( 'should instruct OpenTSDB to purge its in-memory caches', function test( done ) {
+			var client = createClient();
+
+			client.dropcaches( function onResponse( error, body ) {
+				if ( error ) {
+					assert.notOk( true, 'Request to drop caches returned an error.' );
+					done();
+					return;
+				}
+				assert.deepEqual( body, tsdb.dropcaches );
+				done();
+			});
+		});
+
+		it( 'should pass along any request errors to the callback', function test( done ) {
+			var client = createClient();
+
+			client.host( 'badhost' );
+
+			client.dropcaches( function onResponse( error, data ) {
+				if ( error ) {
+					assert.ok( true );
+					done();
+					return;
+				}
+				assert.notOk( true );
+				done();
+			});
+		});
+
+	}); // end TESTS api/dropcaches
+
 });

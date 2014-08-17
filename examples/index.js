@@ -4,7 +4,7 @@
 *
 *
 *	DESCRIPTION:
-*		- Demonstrates use of an OpenTSDB client.
+*		- Demonstrates use of an OpenTSDB client to retrieve data from OpenTSDB.
 *
 *
 *	NOTES:
@@ -77,66 +77,6 @@
 	* Returns:
 	*
 	*	http://127.0.0.1:4242/api/query?ms=true&arrays=true&show_tsuids=true&no_annotations=true&global_annotations=false&start=1406003885818&end=1406003897818&m=avg:cpu.utilization{tag=*}
-	*/
-
-	// Get the list of supported aggregators:
-	client.aggregators( function onResponse( error, data ) {
-		if ( error ) {
-			console.error( JSON.stringify( error ) );
-			return;
-		}
-		console.log( 'Aggregators: ' + JSON.stringify( data ) );
-	});
-
-	/**
-	* Returns (depending on OpenTSDB version):
-	*
-	*	["min","mimmin","max","mimmax","dev","sum","avg","zimsum"]
-	*/
-
-	// Get the list of stored metrics:
-	client.metrics( function onResponse( error, data ) {
-		if ( error ) {
-			console.error( JSON.stringify( error ) );
-			return;
-		}
-		console.log( 'Metrics: ' + JSON.stringify( data ) );
-	});
-
-	/**
-	* Returns (will depend on metrics stored in OpenTSDB):
-	*
-	*	["metric1","metric2","metric3",...,"metricN"]
-	*/
-
-	// Get the running configuration for OpenTSDB:
-	client.config( function onResponse( error, data ) {
-		if ( error ) {
-			console.error( JSON.stringify( error ) );
-			return;
-		}
-		console.log( 'CONFIG: ' + JSON.stringify( data ) );
-	});
-
-	/**
-	* Returns (will depend on the OpenTSDB configuration):
-	*
-	*	{"tsd.core.auto_create_metrics":"true","tsd.core.meta.enable_realtime_ts":"false",...}
-	*/
-
-	// Get the OpenTSDB version:
-	client.version( function onResponse( error, data ) {
-		if ( error ) {
-			console.error( JSON.stringify( error ) );
-			return;
-		}
-		console.log( 'VERSION: ' + JSON.stringify( data ) );
-	});
-
-	/**
-	* Returns (will depend on the running OpenTSDB):
-	*
-	*	{"timestamp":"1362712695",...,"version":"2.0.0"}
 	*/
 
 	// Perform a data request:
