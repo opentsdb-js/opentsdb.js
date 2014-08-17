@@ -201,7 +201,7 @@ client.version( function onResponse( error, version ) {
 
 #### client.dropcaches( clbk )
 
-Instructs the current OpenTSDB to purge its in-memory [caches](http://opentsdb.net/docs/build/html/api_http/dropcaches.html). The response is passed along to the provided callback.
+Instructs an OpenTSDB to purge its in-memory [caches](http://opentsdb.net/docs/build/html/api_http/dropcaches.html). The response is passed along to the provided callback.
 
 ``` javascript
 client.dropcaches( function onResponse( error, body ) {
