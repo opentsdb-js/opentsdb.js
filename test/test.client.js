@@ -767,4 +767,67 @@ describe( 'lib/client', function tests() {
 
 	}); // end TESTS api/metrics
 
+	describe( 'api/config', function tests() {
+
+		it( 'should provide a method to query TSDB for its current running configuration', function test() {
+			var client = createClient();
+			expect( client.config ).to.be.a( 'function' );
+		});
+
+		it( 'should throw an error if provided argument is not a function', function test() {
+			var client = createClient(),
+				values = [
+					'5',
+					[],
+					{},
+					5,
+					null,
+					undefined,
+					NaN,
+					true
+				];
+
+			for ( var i = 0; i < values.length; i++ ) {
+				expect( badValue( values[i] ) ).to.throw( Error );
+			}
+
+			function badValue( value ) {
+				return function() {
+					client.config( value );
+				};
+			}
+		});
+
+		it( 'should get the current OpenTSDB configuration', function test( done ) {
+			var client = createClient();
+
+			client.config( function onConfig( error, config ) {
+				if ( error ) {
+					assert.notOk( true, 'Config request returned an error.' );
+					done();
+					return;
+				}
+				assert.deepEqual( config, tsdb.config );
+				done();
+			});
+		});
+
+		it( 'should pass along any request errors to the callback', function test( done ) {
+			var client = createClient();
+
+			client.host( 'badhost' );
+
+			client.config( function onResponse( error, data ) {
+				if ( error ) {
+					assert.ok( true );
+					done();
+					return;
+				}
+				assert.notOk( true );
+				done();
+			});
+		});
+
+	}); // end TESTS api/config
+
 });
