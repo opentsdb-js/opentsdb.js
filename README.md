@@ -369,7 +369,7 @@ This method is a setter/getter. If no arguments are provided, returns all tag na
 datum.tags( 'beep', 'boop' );
 ```
 
-A `tag` is an additional piece of information which describes a `datum`. For example, a `cpu.user` timeseries `datum` may originate from a particular host; e.g., `host=webserver1`. To later be able to query OpenTSDB for only those `cpu.user` timeseries originating from `webserver1`, OpenTSDB allows data tagging. In this case,
+A `tag` is an additional piece of information which describes a `datum`. For example, a `cpu.user` timeseries `datum` may originate from a particular host; e.g., `host=webserver1`. To later be able to query OpenTSDB for only those `cpu.user` timeseries originating from `webserver1` while optimizing for aggregations across multiple web servers, OpenTSDB allows data tagging. In this case,
 
 ``` javascript
 datum.tags( 'host', 'webserver1' );
