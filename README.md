@@ -320,7 +320,7 @@ tQuery.tsuids( '001,002,003' );
 ```
 
 
-### Datum
+### Data Model
 
 OpenTSDB specifies a data [model](http://opentsdb.net/docs/build/html/user_guide/writing.html#data-specification) for every timeseries datapoint. To create an OpenTSDB datum,
 
@@ -369,6 +369,14 @@ This method is a setter/getter. If no arguments are provided, returns all tag na
 datum.tags( 'beep', 'boop' );
 ```
 
+A `tag` is an additional piece of information which describes a `datum`. For example, a `cpu.user` timeseries `datum` may originate from a particular host; e.g., `host=webserver1`. To later be able to query OpenTSDB for only those `cpu.user` timeseries originating from `webserver`, OpenTSDB allows data tagging. In this case,
+
+``` javascript
+datum.tags( 'host', 'webserver1' );
+```
+
+The decision to tag a `datum` or include additional information in the `metric name` depends on your `naming schema`. Be careful to consider your query needs before deciding one way or the other.
+
 
 #### datum.dtag( tag )
 
@@ -413,7 +421,7 @@ for ( var i = 0; i < data.length; i++ ) {
 }
 
 // Convert to a newline delimited string:
-data = data.join( '\n' ));
+data = data.join( '\n' );
 
 console.log( data );
 ```
