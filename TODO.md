@@ -13,7 +13,7 @@ TODO
 7. 	Include browserify instructions; client-side demo.
 8. 	
 9. 	
-10. db stats query route (ability to poll; allow for monitoring)
+10. db stats query route (ability to poll; allow for monitoring) (http://opentsdb.net/docs/build/html/user_guide/stats.html)
 11. tsmeta data routes (e.g., get units, notes, displayName)
 12. uidmeta data route
 

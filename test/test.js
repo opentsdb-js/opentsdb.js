@@ -37,7 +37,8 @@ describe( '/lib', function tests() {
 	var properties = [
 			'client',
 			'mquery',
-			'tquery'
+			'tquery',
+			'datum'
 		];
 
 	it( 'should export an object', function test() {

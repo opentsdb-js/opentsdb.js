@@ -37,7 +37,7 @@ describe( 'lib/query/metric', function tests() {
 		assert.strictEqual( query.type.toLowerCase(), 'metric' );
 	});
 
-	it( 'should be a method to set the metric name', function test() {
+	it( 'should provide a method to set/get the metric name', function test() {
 		var query = createQuery();
 		expect( query.metric ).to.be.a( 'function' );
 	});

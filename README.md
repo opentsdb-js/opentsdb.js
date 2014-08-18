@@ -20,8 +20,7 @@ For use in the browser, use [browserify](https://github.com/substack/node-browse
 
 ### Client
 
-To interface with OpenTSDB, one must first create a client.
-To do so,
+To interface with OpenTSDB, one must first create a client. To do so,
 
 ``` javascript
 var opentsdb = require( 'opentsdb' );
@@ -321,7 +320,103 @@ tQuery.tsuids( '001,002,003' );
 ```
 
 
+### Datum
 
+OpenTSDB specifies a data [model](http://opentsdb.net/docs/build/html/user_guide/writing.html#data-specification) for every timeseries datapoint. To create an OpenTSDB datum,
+
+``` javascript
+var opentsdb = require( 'opentsdb' );
+
+var datum = opentsdb.datum();
+```
+
+A datum is configurable and has the following methods...
+
+
+#### datum.metric( [name] )
+
+This method is a setter/getter. If no `metric name` is provided, returns the `metric name` assigned to a datum. A `metric name` is __required__ to properly describe a datum. To set a `metric name`,
+
+``` javascript
+datum.metric( 'mem.utilization' );
+```
+
+#### datum.timestamp( [timestamp] )
+
+This method is a setter/getter. If no `timestamp` is provided, returns the `timestamp` assigned to a datum. A `timestamp` is __required__ to properly describe a datum. To set a `timestamp`,
+
+``` javascript
+datum.timestamp( Date.now() );
+```
+
+A `timestamp` may either be a date string or a UNIX timestamp.
+
+
+#### datum.value( [value] )
+
+This method is a setter/getter. If no `value` is provided, returns the datum `value`. A `value` is __required__ to properly describe a datum. To set a datum `value`,
+
+``` javascript
+datum.value( Math.random() );
+```
+
+
+#### datum.tags( [tag, [value]] )
+
+This method is a setter/getter. If no arguments are provided, returns all tag names and their values. If a `tag` name is specified, returns the value for that tag. Otherwise, sets a `tag` to the specified `value`.
+
+``` javascript
+datum.tags( 'beep', 'boop' );
+```
+
+
+#### datum.dtag( tag )
+
+This method deletes a datum `tag`.
+
+``` javascript
+// Add a tag:
+datum.tags( 'beep', 'boop' );
+
+// Delete the tag:
+datum.dtag( 'beep' );
+```
+
+
+#### datum.toString()
+
+This method serializes the datum. The datum must have a `metric name`, `timestamp`, and `value` to be serializable. To serialize a datum,
+
+``` javascript
+datum.toString();
+```
+
+Because a `datum` is configurable, a `datum` serves as a factory for serializing similar data.
+
+``` javascript
+var data = new Array( 100 );
+
+// Configure a datum:
+datum
+	.metric( 'cpu.utilization' )
+	.tags( 'beep', 'boop' )
+	.tags( 'foo', 'bar' );
+
+for ( var i = 0; i < data.length; i++ ) {
+	// Assign values to the datum:
+	datum
+		.timestamp( Date.now() )
+		.value( Math.random() );
+
+	// Serialize and store:
+	data[ i ] = datum.toString();
+}
+
+// Convert to a newline delimited string:
+data = data.join( '\n' ));
+
+console.log( data );
+```
 
 
 

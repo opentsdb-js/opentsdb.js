@@ -351,7 +351,7 @@ describe( 'lib/client', function tests() {
 			}
 		});
 
-		it( 'should provide a method to set the query start time', function test() {
+		it( 'should set the query start time', function test() {
 			var client = createClient(),
 				relative = '72h-ago',
 				absolute = '2014/07/18 09:45',
@@ -400,7 +400,7 @@ describe( 'lib/client', function tests() {
 			}
 		});
 
-		it( 'should provide a method to set the query end time', function test() {
+		it( 'should set the query end time', function test() {
 			var client = createClient(),
 				relative = '72h-ago',
 				absolute = '2014/07/18 09:45',
