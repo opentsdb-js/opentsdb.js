@@ -13,7 +13,7 @@ NOTES ?= 'TODO|FIXME'
 
 # MOCHA #
 
-# Specify the test framework binary locations:
+# Specify the test framework bin locations:
 MOCHA ?= ./node_modules/.bin/mocha
 _MOCHA ?= ./node_modules/.bin/_mocha
 
