@@ -36,6 +36,7 @@ describe( '/lib', function tests() {
 
 	var properties = [
 			'client',
+			'socket',
 			'mquery',
 			'tquery',
 			'datum'

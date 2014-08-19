@@ -59,7 +59,7 @@
 		.value( Math.random() );
 
 	// Serialize the datum:
-	datum.toString();
+	console.log( datum.toString() );
 
 	/**
 	* Returns:
@@ -81,5 +81,15 @@
 	data = data.join( '\n' );
 
 	console.log( data );
+
+	/**
+	* Returns:
+	*
+	*	"cpu.utilization <timestamp> <value> beep=boop foo=bar"
+	*	"cpu.utilization <timestamp> <value> beep=boop foo=bar"
+	*	"cpu.utilization <timestamp> <value> beep=boop foo=bar"
+	*	...
+	*	"cpu.utilization <timestamp> <value> beep=boop foo=bar"
+	*/
 
 })();
