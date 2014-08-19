@@ -11,7 +11,7 @@
 
 	// VARIABLES //
 
-	var PORT = 4242,
+	var PORT = 12345,
 		HOST = '127.0.0.1';
 
 
