@@ -338,7 +338,7 @@ A datum is configurable and has the following methods...
 This method is a setter/getter. If no `metric name` is provided, returns the `metric name` assigned to a datum. A `metric name` is __required__ to properly describe a datum. To set a `metric name`,
 
 ``` javascript
-datum.metric( 'mem.utilization' );
+datum.metric( 'cpu.utilization' );
 ```
 
 #### datum.timestamp( [timestamp] )
