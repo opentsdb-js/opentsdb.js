@@ -2,7 +2,7 @@ OpenTSDB
 ========
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Dependencies][dependencies-image]][dependencies-url]
 
-JavaScript [OpenTSDB](http://opentsdb.net) client library.
+JavaScript [OpenTSDB](http://opentsdb.net) library.
 
 
 
@@ -512,17 +512,17 @@ Copyright &copy; 2014. Athan Reines.
 [npm-image]: http://img.shields.io/npm/v/opentsdb.svg
 [npm-url]: https://npmjs.org/package/opentsdb
 
-[travis-image]: http://img.shields.io/travis/kgryte/opentsdb.js/master.svg
-[travis-url]: https://travis-ci.org/kgryte/opentsdb.js
+[travis-image]: http://img.shields.io/travis/opentsdb-js/opentsdb.js/master.svg
+[travis-url]: https://travis-ci.org/opentsdb-js/opentsdb.js
 
-[coveralls-image]: https://img.shields.io/coveralls/kgryte/opentsdb.js/master.svg
-[coveralls-url]: https://coveralls.io/r/kgryte/opentsdb.js?branch=master
+[coveralls-image]: https://img.shields.io/coveralls/opentsdb-js/opentsdb.js/master.svg
+[coveralls-url]: https://coveralls.io/r/opentsdb-js/opentsdb.js?branch=master
 
-[dependencies-image]: http://img.shields.io/david/kgryte/opentsdb.js.svg
-[dependencies-url]: https://david-dm.org/kgryte/opentsdb.js
+[dependencies-image]: http://img.shields.io/david/opentsdb-js/opentsdb.js.svg
+[dependencies-url]: https://david-dm.org/opentsdb-js/opentsdb.js
 
-[dev-dependencies-image]: http://img.shields.io/david/dev/kgryte/opentsdb.js.svg
-[dev-dependencies-url]: https://david-dm.org/dev/kgryte/opentsdb.js
+[dev-dependencies-image]: http://img.shields.io/david/dev/opentsdb-js/opentsdb.js.svg
+[dev-dependencies-url]: https://david-dm.org/dev/opentsdb-js/opentsdb.js
 
-[github-issues-image]: http://img.shields.io/github/issues/kgryte/opentsdb.js.svg
-[github-issues-url]: https://github.com/kgryte/opentsdb.js/issues
+[github-issues-image]: http://img.shields.io/github/issues/opentsdb-js/opentsdb.js.svg
+[github-issues-url]: https://github.com/opentsdb-js/opentsdb.js/issues

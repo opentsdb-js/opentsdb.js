@@ -24,7 +24,7 @@ TODO
 		- 	opentsdb.js
 		-	s-server
 		- 	stats (see #10)
-14. method to set error/type checking flag for `write`; default `true`
+14. method to set type checking flag for `write`; default `true`
 
 
 
