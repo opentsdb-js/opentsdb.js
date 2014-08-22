@@ -5,7 +5,7 @@ var // Expectation library:
 	chai = require( 'chai' ),
 
 	// Parent class:
-	Uber = require( './../lib/query' ),
+	Uber = require( 'opentsdb-query' ),
 
 	// Module to be tested:
 	createQuery = require( './../lib/query/tsuids.js' );

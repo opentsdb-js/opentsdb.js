@@ -22,7 +22,6 @@ TODO
 		- 	opentsdb.js
 		-	s-server
 		- 	stats (see #10)
-		- 	query superclass
 		- 	query descendents
 14. contributing guide (styles, etc)
 

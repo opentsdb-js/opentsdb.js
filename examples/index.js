@@ -15,14 +15,6 @@
 *		[1] 
 *
 *
-*	HISTORY:
-*		- 2014/07/21: Created. [AReines].
-*
-*
-*	DEPENDENCIES:
-*		[1] 
-*
-*
 *	LICENSE:
 *		MIT
 *
