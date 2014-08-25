@@ -38,12 +38,12 @@ describe( 'lib/query/tsuids', function tests() {
 
 	it( 'should not support a tags method', function test() {
 		var query = createQuery();
-		expect( query.tags ).to.throw( Error );
+		assert.isUndefined( query.tags );
 	});
 
 	it( 'should not support a delete tag method', function test() {
 		var query = createQuery();
-		expect( query.dtag ).to.throw( Error );
+		assert.isUndefined( query.dtag );
 	});
 
 	it( 'should be provide a method to set TSUIDs', function test() {

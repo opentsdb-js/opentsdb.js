@@ -23,7 +23,9 @@ TODO
 		-	s-server
 		- 	stats (see #10)
 		- 	query descendents
+		- 	url
 14. contributing guide (styles, etc)
+15. relative time formatting $
 
 
 
