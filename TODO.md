@@ -25,7 +25,9 @@ TODO
 		- 	query descendents
 		- 	url
 14. contributing guide (styles, etc)
-15. relative time formatting $
+15. relative time formatting
+16. update README with socket guide
+17. 
 
 
 
