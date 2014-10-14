@@ -423,7 +423,7 @@ tQuery.tsuids( '001,002,003' );
 ```
 
 
-### Data Model
+### [Data Model](https://github.com/opentsdb-js/opentsdb-datum)
 
 OpenTSDB specifies a data [model](http://opentsdb.net/docs/build/html/user_guide/writing.html#data-specification) for every timeseries datapoint. To create an OpenTSDB datum,
 
