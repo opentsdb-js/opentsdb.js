@@ -79,7 +79,7 @@ For use in the browser, use [browserify](https://github.com/substack/node-browse
 This library is comprised of the following core components...
 
 
-### Client
+### [Client](https://github.com/opentsdb-js/client)
 
 To interface with OpenTSDB, one must first create a client. To do so,
 
@@ -306,7 +306,7 @@ client.dropcaches( function onResponse( error, body ) {
 
 ### Queries
 
-OpenTSDB permits two query [types](/docs/build/html/api_http/query/index.html): _metric_ and _tsuid_.
+OpenTSDB permits two query [types](/docs/build/html/api_http/query/index.html): _[metric](https://github.com/opentsdb-js/mquery)_ and _[tsuid](https://github.com/opentsdb-js/tquery)_.
 
 Metric queries are general queries which return an indeterministic number of timeseries. OpenTSDB implements metric queries by searching for timeseries matching the metric criteria, e.g., `metric name` and `tag`.
 
@@ -423,7 +423,7 @@ tQuery.tsuids( '001,002,003' );
 ```
 
 
-### [Data Model](https://github.com/opentsdb-js/opentsdb-datum)
+### [Data Model](https://github.com/opentsdb-js/datum)
 
 OpenTSDB specifies a data [model](http://opentsdb.net/docs/build/html/user_guide/writing.html#data-specification) for every timeseries datapoint. To create an OpenTSDB datum,
 
@@ -537,7 +537,7 @@ console.log( data );
 ```
 
 
-### [Socket](https://github.com/opentsdb-js/opentsdb-socket)
+### [Socket](https://github.com/opentsdb-js/socket)
 
 To interface with OpenTSDB, one can create a socket client. To do so,
 

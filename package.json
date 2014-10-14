@@ -31,10 +31,10 @@
   ],
   "dependencies": {
     "request": "^2.37.0",
-    "opentsdb-validate-time": "~0.0.0",
-    "opentsdb-datum": "~0.0.0",
-    "opentsdb-socket": "~0.0.1",
-    "opentsdb-query": "~0.0.1"
+    "opentsdb-validate-time": "~0.0.1",
+    "opentsdb-datum": "~0.0.1",
+    "opentsdb-socket": "~0.0.2",
+    "opentsdb-query": "~0.0.2"
   },
   "devDependencies": {
     "chai": "1.x.x",
