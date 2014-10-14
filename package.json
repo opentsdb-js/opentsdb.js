@@ -4,7 +4,7 @@
   "description": "OpenTSDB library.",
   "author": {
     "name": "Athan Reines",
-    "email": "athan@nodeprime.com"
+    "email": "kgryte@gmail.com"
   },
   "contributors": [
     {}
@@ -33,8 +33,8 @@
     "request": "^2.37.0",
     "opentsdb-validate-time": "~0.0.0",
     "opentsdb-datum": "~0.0.0",
-    "opentsdb-socket": "~0.0.0",
-    "opentsdb-query": "~0.0.0"
+    "opentsdb-socket": "~0.0.1",
+    "opentsdb-query": "~0.0.1"
   },
   "devDependencies": {
     "chai": "1.x.x",

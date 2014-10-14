@@ -22,29 +22,35 @@ var expect = chai.expect,
 describe( 'lib/query/metric', function tests() {
 	'use strict';
 
+	// SETUP //
+
+	var query;
+
+	beforeEach( function() {
+		query = createQuery();
+	});
+
+
+	// TESTS //
+
 	it( 'should export a factory function', function test() {
 		expect( createQuery ).to.be.a( 'function' );
 	});
 
 	it( 'should inherit from the Query parent class', function test() {
-		var query = createQuery();
-
 		assert.ok( query instanceof Uber, 'query is not an instance of parent Query.' );
 	});
 
 	it( 'should have a type attribute', function test() {
-		var query = createQuery();
 		assert.strictEqual( query.type.toLowerCase(), 'metric' );
 	});
 
 	it( 'should provide a method to set/get the metric name', function test() {
-		var query = createQuery();
 		expect( query.metric ).to.be.a( 'function' );
 	});
 
 	it( 'should not allow a non-string metric name', function test() {
-		var query = createQuery(),
-			values = [
+		var values = [
 				5,
 				[],
 				{},
@@ -67,7 +73,6 @@ describe( 'lib/query/metric', function tests() {
 	});
 
 	it( 'should set the metric name', function test() {
-		var query = createQuery();
 		query.metric( 'cpu.utilization' );
 		assert.strictEqual( query.metric(), 'cpu.utilization' );
 	});
@@ -77,13 +82,11 @@ describe( 'lib/query/metric', function tests() {
 	describe( 'tags', function tests() {
 
 		it( 'should provide a method to get/set tag names and values', function test() {
-			var query = new Query();
 			expect( query.tags ).to.be.a( 'function' );
 		});
 
 		it( 'should not allow a non-string tag name', function test() {
-			var query = new Query(),
-				values = [
+			var values = [
 					5,
 					[],
 					{},
@@ -106,8 +109,7 @@ describe( 'lib/query/metric', function tests() {
 		});
 
 		it( 'should not allow a non-string tag value', function test() {
-			var query = new Query(),
-				values = [
+			var values = [
 					5,
 					[],
 					{},
@@ -130,16 +132,14 @@ describe( 'lib/query/metric', function tests() {
 		});
 
 		it( 'should set a tag value', function test() {
-			var query = new Query(),
-				tag = 'foo',
+			var tag = 'foo',
 				value = 'bar';
 			query.tags( tag, value );
 			assert.strictEqual( query.tags( tag ), value );
 		});
 
 		it( 'should return all tags', function test() {
-			var query = new Query(),
-				tags = {
+			var tags = {
 					'tag1': 'value1',
 					'tag2': 'value2'
 				};
@@ -150,8 +150,7 @@ describe( 'lib/query/metric', function tests() {
 		});
 
 		it( 'should return a tag value', function test() {
-			var query = new Query(),
-				tag = 'beep',
+			var tag = 'beep',
 				value = 'boop';
 			query.tags( tag, value );
 			assert.strictEqual( query.tags( tag ), value );
@@ -165,18 +164,15 @@ describe( 'lib/query/metric', function tests() {
 	describe( 'deleting a tag', function tests() {
 
 		it( 'should provide a method to delete a tag', function test() {
-			var query = new Query();
 			expect( query.dtag ).to.be.a( 'function' );
 		});
 
 		it( 'should require a tag name as input', function test() {
-			var query = new Query();
 			expect( query.dtag ).to.throw( Error );
 		});
 
 		it( 'should not allow a non-string tag name', function test() {
-			var query = new Query(),
-				values = [
+			var values = [
 					5,
 					[],
 					{},
@@ -199,8 +195,7 @@ describe( 'lib/query/metric', function tests() {
 		});
 
 		it( 'should delete a tag', function test() {
-			var query = new Query(),
-				tag = 'tag',
+			var tag = 'tag',
 				value = 'value';
 			query.tags( tag, value );
 			assert.strictEqual( query.tags( tag ), value );
