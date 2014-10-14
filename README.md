@@ -43,7 +43,18 @@ OpenTSDB
 		*	[datum.dtag()](#datum-dtag)
 		*	[datum.toString()](#datum-tostring)
 	- 	[Socket](#socket)
-		* 	..._TODO_...
+		* 	[socket.host()](#socket-host)
+		*	[socket.port()](#socket-port)
+		*	[socket.connect()](#socket-connect)
+		*	[socket.status()](#socket-status)
+		*	[socket.strict()](#socket-strict)
+		*	[socket.write()](#socket-write)
+		*	[socket.end()](#socket-end)
+		*	[Events](#events)
+			- 	[connect](#socket-events-connect)
+			-	[error](#socket-events-error)
+			-	[close](#socket-events-close)
+			-	[warn](#socket-events-warn)
 1. 	[Notes](#notes)
 1. 	[Tests](#tests)
 	- 	[Unit](#unit)
@@ -525,6 +536,155 @@ data = data.join( '\n' );
 console.log( data );
 ```
 
+
+### [Socket](https://github.com/opentsdb-js/opentsdb-socket)
+
+To interface with OpenTSDB, one can create a socket client. To do so,
+
+``` javascript
+var createSocket = require( 'opentsdb-socket' );
+
+var socket = createSocket();
+```
+
+OpenTSDB socket clients are configurable and have the following methods...
+
+
+<a name="socket-host"></a>
+#### socket.host( [host] )
+
+This method is a setter/getter. If no `host` is provided, the method returns the configured `host`. By default, the client `host` is `127.0.0.1`. To point to a remote `host`,
+
+``` javascript
+socket.host( '192.168.92.11' );
+```
+
+
+<a name="socket-port"></a>
+#### socket.port( [port] )
+
+This method is a setter/getter. If no `port` is provided, the method returns the configured `port`. By default, the client port is `4242`. To set a different `port`,
+
+``` javascript
+socket.port( 8080 );
+```
+
+
+<a name="socket-connect"></a>
+#### socket.connect()
+
+Creates a TCP socket connection.
+
+``` javascript
+socket.connect();
+```
+
+
+<a name="socket-status"></a>
+#### socket.status()
+
+Returns the current connection status. If a socket connection exists, returns `true`. If no socket connection exists, returns `false`. 
+
+``` javascript
+socket.status();
+```
+
+
+<a name="socket-strict"></a>
+#### socket.strict( [bool] )
+
+This method is a setter/getter. If no boolean `flag` is provided, the method returns the strict setting. By default, the socket enforces strict type checking on socket writes. To turn off strict mode,
+
+``` javascript
+socket.strict( false );
+```
+
+Turn off strict mode when you are certain that arguments provided to the `socket.write()` method are of the proper type.
+
+
+<a name="socket-write"></a>
+#### socket.write( string[, clbk] )
+
+Writes to the socket connection. If strict mode is `off`, no type checking of input arguments occurs. An optional callback is invoked after writing all data to the socket. To write to the socket,
+
+``` javascript
+var value = '';
+
+value += 'put ';
+value += 'cpu.utilization ';
+value += Date.now() + ' ';
+value += Math.random() + ' ';
+value += 'beep=boop ';
+value += 'foo=bar\n';
+
+socket.write( value, function ack() {
+	console.log( '...data written...' );
+});
+```
+
+<a name="socket-end"></a>
+#### socket.end()
+
+Closes a socket connection. To close a socket,
+
+``` javascript
+socket.end();
+```
+
+
+### Events
+
+The socket is an event-emitter and emits the following events...
+
+
+<a name="socket-events-connect"></a>
+#### 'connect'
+
+The socket emits a `connect` event upon successfully establishing a socket connection. To register a listener,
+
+``` javascript
+socket.addListener( 'connect', function onConnect() {
+	console.log( '...connected...' );
+});
+```
+
+<a name="socket-events-error"></a>
+#### 'error'
+
+The socket emits an `error` event upon encountering an error. To register a listener,
+
+``` javascript
+socket.addListener( 'error', function onError( error ) {
+	console.error( error.message );
+	console.error( error.stack );
+});
+```
+
+<a name="socket-events-close"></a>
+#### 'close'
+
+The socket emits a `close` event when the other end of the connection closes the socket. To register a listener,
+
+``` javascript
+socket.addListener( 'close', function onClose() {
+	console.log( '...socket closed...' );
+	console.log( '...attempting to reconnect in 5 seconds...' );
+	setTimeout( function reconnect() {
+		socket.connect();
+	}, 5000 );
+});
+```
+
+<a name="socket-events-warn"></a>
+#### 'warn'
+
+The socket emits a `warn` event when attempting to create a new socket connection when a connection already exists. To register a listener,
+
+``` javascript
+socket.addListener( 'warn', function onWarn( message ) {
+	console.warn( message );
+});
+```
 
 
 
