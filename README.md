@@ -8,7 +8,7 @@ OpenTSDB
 ## TOC
 
 1. 	[Installation](#installation)
-1. 	[Usage]
+1. 	[Usage](#usage)
 	- 	[Client](#client)
 		* 	[client.host()](#client-host)
 		*	[client.port()](#client-port)
@@ -319,7 +319,7 @@ The distinctions between the two types are 1) metric queries require a metric na
 <a name="query-aggregator"></a>
 #### query.aggregator( [aggregator] )
 
-This method is a setter/getter. If no `aggregator` is provided, returns the query [aggregator](http://opentsdb.net/docs/build/html/api_http/aggregators.html) . The default aggregator is `avg`. To set a different `aggregator`,
+This method is a setter/getter. If no `aggregator` is provided, returns the query [aggregator](http://opentsdb.net/docs/build/html/api_http/aggregators.html). The default aggregator is `avg`. To set a different `aggregator`,
 
 ``` javascript
 query.aggregator( 'min' );
@@ -329,7 +329,7 @@ query.aggregator( 'min' );
 <a name="query-downsample"></a>
 #### query.downsample( [downsample] )
 
-This method is a setter/getter. If no `downsample` function is provided, returns the configured `downsample` function. By default, downsampling is turned off. To specify a `downsample` function,
+This method is a setter/getter. If no `downsample` function is provided, returns the configured `downsample` function. By default, downsampling is turned off (i.e., set to `null`). To specify a `downsample` function,
 
 ``` javascript
 query.downsample( '5s-avg' );
