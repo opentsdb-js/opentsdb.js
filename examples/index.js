@@ -22,7 +22,7 @@
 *
 *
 *	AUTHOR:
-*		Athan Reines. athan@nodeprime.com. 2014.
+*		Athan Reines. kgryte@gmail.com.
 *
 */
 

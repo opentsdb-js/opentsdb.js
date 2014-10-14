@@ -2,10 +2,10 @@ OpenTSDB
 ========
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Dependencies][dependencies-image]][dependencies-url]
 
-> JavaScript [OpenTSDB](http://opentsdb.net) library.
+> JavaScript library for [OpenTSDB](http://opentsdb.net).
 
 
-## TOC
+## Table of Contents
 
 1. 	[Installation](#installation)
 1. 	[Usage](#usage)

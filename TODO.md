@@ -7,11 +7,11 @@ TODO
 1. 	setTimeout/setInterval
 2. 	
 3. 	assign route (assign metrics and cache uids)
-4. 	Should pagination of metric list be supported? or ability to supply suggestion; e.g., cpu.cp, net.util, mem., etc, just as one does in the search box?
+4. 	Should pagination of metric list be supported? or ability to supply suggestion; e.g., cpu.cp, net.util, mem., etc, just as one does in the search box? see doc-metrix
 5. 	annotations get route; may need something similar to mQuery, tQuery for annotations: aQuery!. Also support for put, post, delete.
 6. 	Instrument logging (e.g., get_response.js ) --> should we instrument logging, or leave this to the client?
 7. 	Include browserify instructions; client-side demo.
-8. 	Add a ToC to the README.
+8. 	
 9. 	
 10. db stats query route (ability to poll; allow for monitoring) (http://opentsdb.net/docs/build/html/user_guide/stats.html) --> this should be separate module
 11. tsmeta data routes (e.g., get units, notes, displayName)
@@ -22,8 +22,9 @@ TODO
 		- 	opentsdb.js
 		-	s-server
 		- 	stats (see #10)
-		- 	query descendents
+		- 	query descendants
 		- 	url
+		- 	mock TSDB server
 14. contributing guide (styles, etc)
 15. relative time formatting
 16. update README with socket guide
