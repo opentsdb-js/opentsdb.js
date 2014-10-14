@@ -51,7 +51,7 @@ OpenTSDB
 1. 	[License](#license)
 
 
-
+---
 ## Installation
 
 For use in Node.js,
@@ -529,7 +529,7 @@ console.log( data );
 
 
 
----
+
 ## Notes
 
 When used as setters, all setter/getter methods are chainable. For example,
@@ -567,7 +567,7 @@ client
 ```
 
 
----
+
 ## Tests
 
 ### Unit
@@ -596,7 +596,7 @@ $ make view-cov
 ```
 
 
----
+
 ## License
 
 [MIT license](http://opensource.org/licenses/MIT). 
