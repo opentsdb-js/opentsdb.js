@@ -125,7 +125,7 @@ client.ms( false );
 <a name="client-arrays"></a>
 #### client.arrays( [bool] )
 
-This method is a setter/getter. If no boolean flag is provided, the method returns the flag indicating whether data is output as an array. By default, array output is on. To turn off array output,
+This method is a setter/getter. If no boolean flag is provided, the method returns the flag indicating whether data is output as an `array`. By default, `array` output is on. To turn off `array` output,
 
 ``` javascript
 client.arrays( false );
@@ -162,7 +162,14 @@ client.annotations( 'all' );
 This method is a setter/getter. If no `time` is provided, the method returns the configured query start `time`. Before making an OpenTSDB query, a start time is __required__. To do so,
 
 ``` javascript
+// UNIX timestamp:
 client.start( Date.now()-1000 );
+
+// Absolute time:
+client.start( '2014/10/18 09:45' );
+
+// Relative time:
+client.start( '72m-ago' );
 ```
 
 
@@ -172,7 +179,14 @@ client.start( Date.now()-1000 );
 This method is a setter/getter. If no `time` is provided, the method returns the configured query end `time`. An end time is optional when making an OpenTSDB query. If no end time is set upon making a query, OpenTSDB defaults to the time at which the request is made.
 
 ``` javascript
+// UNIX timestamp:
 client.end( Date.now() );
+
+// Absolute time:
+client.end( '2014/10/18 09:47' );
+
+// Relative time:
+client.end( '70m-ago' );
 ```
 
 If at time `t1` you specify an end time and later decide at `t2` to make a request which does not specify an end time, you can `null` the configuration value.
@@ -419,7 +433,11 @@ mQuery.metric( 'mem.utilization' );
 This method is a setter/getter. If no `tsuids` are provided, return the query `tsuids`. `tsuids` are __required__ to encode a tsuid query. To set `tsuids`,
 
 ``` javascript
+// Comma-delimited string:
 tQuery.tsuids( '001,002,003' );
+
+// Array:
+tQuery.tsuids( ['001','002','003'] );
 ```
 
 

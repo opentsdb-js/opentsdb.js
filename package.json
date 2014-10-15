@@ -27,19 +27,22 @@
     "tsdb",
     "timeseries",
     "query",
-    "poll"
+    "poll",
+    "client",
+    "socket"
   ],
   "dependencies": {
-    "request": "^2.37.0",
-    "opentsdb-validate-time": "~0.0.1",
+    "opentsdb-client": "0.0.2",
     "opentsdb-datum": "~0.0.1",
+    "opentsdb-mquery": "~0.0.1",
+    "opentsdb-query": "~0.0.2",
     "opentsdb-socket": "~0.0.2",
-    "opentsdb-query": "~0.0.2"
+    "opentsdb-tquery": "~0.0.2",
+    "opentsdb-validate-time": "~0.0.1"
   },
   "devDependencies": {
     "chai": "1.x.x",
     "coveralls": "^2.11.1",
-    "express": "^4.6.1",
     "istanbul": "^0.3.0",
     "mocha": "1.x.x"
   },
