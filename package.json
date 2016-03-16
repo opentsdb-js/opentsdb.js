@@ -1,6 +1,6 @@
 {
   "name": "opentsdb",
-  "version": "0.5.5",
+  "version": "0.5.6",
   "description": "OpenTSDB library.",
   "author": {
     "name": "Athan Reines",
