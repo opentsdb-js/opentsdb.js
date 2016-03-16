@@ -33,7 +33,7 @@
   ],
   "dependencies": {
     "opentsdb-client": "0.0.2",
-    "opentsdb-datum": "~0.0.1",
+    "opentsdb-datum": "~1.0.0",
     "opentsdb-mquery": "~0.0.1",
     "opentsdb-query": "~0.0.2",
     "opentsdb-socket": "~0.0.2",
