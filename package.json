@@ -32,7 +32,6 @@
     "socket"
   ],
   "dependencies": {
-    "opentsdb-client": "0.0.2",
     "opentsdb-datum": "~1.0.0",
     "opentsdb-mquery": "~0.0.1",
     "opentsdb-query": "~0.0.2",
@@ -46,10 +45,5 @@
     "istanbul": "^0.3.0",
     "mocha": "1.x.x"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "http://www.opensource.org/licenses/MIT"
-    }
-  ]
+  "license": "MIT"
 }
