@@ -4,6 +4,7 @@ OpenTSDB
 
 > JavaScript library for [OpenTSDB](http://opentsdb.net).
 
+<a target="_blank" rel="nofollow" href="https://app.codesponsor.io/link/2GH3ESgBANYoWNMCAicW2LQk/opentsdb-js/opentsdb.js"><img alt="Sponsor" width="888" height="68" src="https://app.codesponsor.io/embed/2GH3ESgBANYoWNMCAicW2LQk/opentsdb-js/opentsdb.js.svg"/></a>
 
 ## Table of Contents
 
